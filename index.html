@@ -1,503 +1,644 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MCQ Practice - Section Wise </title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MCQ Practice - Section Wise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: "Poppins", sans-serif;
-      scroll-behavior: smooth;
-    }
+    <style>
+        /* Global Reset and Typography */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            scroll-behavior: smooth;
+        }
 
-    body {
-      background: linear-gradient(135deg, #89f7fe, #66a6ff);
-      color: #222;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      padding: 20px;
-      transition: 0.4s;
-    }
+        /* ---------------------------------------------------------------------- */
+        /* UPDATED: Live UI Background Animation with 10+ colors */
+        /* ---------------------------------------------------------------------- */
 
-    body.dark {
-      background: linear-gradient(135deg, #1f1c2c, #928dab);
-      color: #fff;
-    }
+        /* Define the animation keyframes */
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
 
-    header {
-      text-align: center;
-      font-size: 2em;
-      font-weight: 700;
-      text-transform: uppercase;
-      margin-bottom: 20px;
-      color: #333;
-    }
+        /* Core Layout: Sticky Footer Pattern with Animated Background */
+        body {
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: 0.4s;
 
-    body.dark header {
-      color: #fff;
-    }
+            /* 🌟 Apply 10 vibrant colors for a dynamic transition 🌟 */
+            background: linear-gradient(
+                135deg, 
+                #87CEEB, /* Sky Blue */
+                #7FFFD4, /* Aquamarine */
+                #98FB98, /* Mint Green */
+                #EEE8AA, /* Pale Goldenrod */
+                #FFDAB9, /* Peach Puff */
+                #F08080, /* Light Coral */
+                #E6E6FA, /* Lavender */
+                #CCCCFF, /* Periwinkle */
+                #D8BFD8, /* Thistle */
+                #E5E4E2 /* Platinum Gray */
+            ); 
+            background-size: 300% 300%; 
+            /* MODIFIED: Speeding up to 8s for a more vibrant, live effect */
+            animation: gradient-animation 8s ease infinite; 
+        }
 
-    .grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-      margin-bottom: 25px;
-    }
+        /* Dark Theme - Apply moving gradient with darker, calming colors */
+        body.dark {
+            color: #f8f8f8;
+            background: linear-gradient(135deg, #1f2937, #0f172a, #374151);
+            background-size: 300% 300%;
+            /* Speeding up to 12s for the dark theme */
+            animation: gradient-animation 12s ease infinite;
+        }
+        
+        /* ---------------------------------------------------------------------- */
+        /* Back Button Style */
+        /* ---------------------------------------------------------------------- */
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #1e3a8a;
+            cursor: pointer;
+            font-weight: 600;
+            transition: color 0.2s, transform 0.2s;
+        }
+        .back-btn:hover {
+            color: #3b82f6;
+            transform: translateX(-3px);
+        }
+        body.dark .back-btn {
+            color: #93c5fd;
+        }
+        body.dark .back-btn:hover {
+            color: #60a5fa;
+        }
 
-    .btn {
-      background: #66a6ff;
-      color: white;
-      border: none;
-      padding: 12px 18px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+        /* ---------------------------------------------------------------------- */
+        /* EXISTING CSS (Refined for cleanliness) */
+        /* ---------------------------------------------------------------------- */
+        
+        .content-wrapper {
+            flex-grow: 1; 
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .btn:hover {
-      transform: scale(1.05);
-      background: #4e8ef7;
-    }
+        header {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #1e3a8a; 
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+            z-index: 10; 
+        }
 
-    .container {
-      background: rgba(255, 255, 255, 0.9);
-      border-radius: 20px;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      padding: 30px;
-      width: 100%;
-      max-width: 800px;
-      transition: 0.4s;
-      overflow-y: auto;
-      max-height: 90vh;
-      display: none;
-    }
+        body.dark header {
+            color: #93c5fd; 
+        }
 
-    body.dark .container {
-      background: rgba(20, 20, 30, 0.9);
-    }
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            width: 100%;
+            max-width: 900px; 
+            margin-bottom: 40px;
+            padding: 0 10px;
+        }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 10px;
-      font-size: 1.6em;
-      color: #333;
-    }
+        /* Section Button Styling (Card-like) */
+        .btn {
+            background: #ffffff; 
+            color: #1e3a8a;
+            border: 1px solid #d1d5db;
+            padding: 30px 20px;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
+            z-index: 10;
+        }
 
-    body.dark h2 {
-      color: #fff;
-    }
+        .btn:hover {
+            transform: translateY(-4px); 
+            background: #eff6ff; 
+            border-color: #3b82f6; 
+            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
+        }
 
-    .topscore, .timer {
-      text-align: center;
-      font-size: 1rem;
-      margin: 5px 0;
-      font-weight: 600;
-    }
+        body.dark .btn {
+            background: #1f2937;
+            color: #93c5fd;
+            border-color: #374151;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
 
-    .timer {
-      color: #f39c12;
-    }
+        body.dark .btn:hover {
+            background: #374151;
+            border-color: #60a5fa;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(96, 165, 250, 0.2);
+        }
+        
+        /* Section Container (Quiz View) */
+        .container {
+            position: relative; /* Needed for positioning the back button */
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px); 
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            padding-top: 70px; /* Added space for the back button */
+            width: 100%;
+            max-width: 700px;
+            transition: 0.4s;
+            display: none;
+            margin-top: 20px;
+            overflow-y: auto;
+            z-index: 20;
+        }
 
-    .topscore {
-      color: #00c851;
-    }
+        body.dark .container {
+            background: rgba(31, 41, 55, 0.95);
+        }
 
-    .question-card {
-      text-align: center;
-      background: rgba(255, 255, 255, 0.2);
-      padding: 25px;
-      border-radius: 16px;
-      margin-bottom: 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      transition: 0.3s;
-    }
+        h2 {
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            color: #1e3a8a;
+        }
 
-    body.dark .question-card {
-      background: rgba(255, 255, 255, 0.08);
-    }
+        body.dark h2 {
+            color: #93c5fd;
+        }
 
-    .question {
-      font-weight: 600;
-      font-size: 1.1rem;
-      text-align: center;
-      margin-bottom: 15px;
-    }
+        .topscore, .timer {
+            text-align: center;
+            font-size: 1.1rem;
+            margin: 8px 0;
+            font-weight: 600;
+        }
 
-    .options {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-    }
+        .timer {
+            color: #f59e0b; 
+        }
 
-    .options button {
-      background: #eee;
-      color: #333;
-      padding: 12px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-      min-width: 120px;
-      text-align: center;
-      font-weight: 600;
-      border: none;
-    }
+        .topscore {
+            color: #10b981; 
+        }
 
-    .options button:hover {
-      background: #66a6ff;
-      color: white;
-    }
+        .question-card {
+            text-align: center;
+            background: #f9fafb;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
 
-    body.dark .options button {
-      background: #333;
-      color: white;
-    }
+        body.dark .question-card {
+            background: #374151;
+        }
 
-    body.dark .options button:hover {
-      background: #4e8ef7;
-    }
+        .question {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
 
-    .result {
-      text-align: center;
-      font-size: 1rem;
-      font-weight: 600;
-      margin-top: 10px;
-      min-height: 1.5rem;
-    }
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px;
+        }
 
-    .submit-btn {
-      display: block;
-      margin: 20px auto;
-      background: #00c851;
-      color: white;
-      font-weight: 700;
-      padding: 12px 22px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+        .options button {
+            background: #f3f4f6;
+            color: #333;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
 
-    .submit-btn:hover {
-      background: #009e3e;
-      transform: scale(1.05);
-    }
+        .options button:hover {
+            background: #dbeafe;
+            color: #1e3a8a;
+            border-color: #60a5fa;
+        }
 
-    .review {
-      margin-top: 25px;
-      background: rgba(255, 255, 255, 0.15);
-      padding: 20px;
-      border-radius: 12px;
-      font-size: 15px;
-    }
+        body.dark .options button {
+            background: #4b5563;
+            color: #f8f8f8;
+            border-color: #4b5563;
+        }
 
-    .review h3 {
-      color: #e74c3c;
-      margin-bottom: 10px;
-    }
+        body.dark .options button:hover {
+            background: #60a5fa;
+            color: #1e3a8a;
+        }
 
-    .review-item {
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      padding: 10px 0;
-    }
+        .submit-btn {
+            display: block;
+            margin: 30px auto 0;
+            background: #10b981; 
+            color: white;
+            font-weight: 700;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.05rem;
+        }
 
-    body.dark .review-item {
-      border-color: rgba(255, 255, 255, 0.1);
-    }
+        .submit-btn:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+        }
 
-    .summary {
-      background: rgba(0, 255, 0, 0.05);
-      border-radius: 8px;
-      padding: 10px;
-      margin-top: 10px;
-    }
+        /* Footer Styling */
+        footer {
+            width: 100%;
+            padding: 15px 20px;
+            background: #ffffff; 
+            border-top: 1px solid #e5e7eb;
+            text-align: center;
+            font-size: 0.9em;
+            color: #6b7280; 
+            transition: 0.4s;
+            z-index: 10;
+        }
 
-    footer {
-      margin-top: 20px;
-      text-align: center;
-      font-size: 0.9em;
-      color: #222;
-    }
+        body.dark footer {
+            background: #1e293b; 
+            border-top: 1px solid #374151;
+            color: #9ca3af;
+        }
 
-    body.dark footer {
-      color: #ccc;
-    }
+        footer a {
+            color: #3b82f6;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        footer a:hover {
+            color: #1e3a8a;
+        }
+        body.dark footer a {
+            color: #60a5fa;
+        }
+        body.dark footer a:hover {
+            color: #93c5fd;
+        }
 
-    .toggle-theme {
-      position: fixed;
-      top: 15px;
-      right: 15px;
-      background: #222;
-      color: white;
-      padding: 10px;
-      border-radius: 50%;
-      cursor: pointer;
-      transition: 0.3s;
-    }
+        /* Theme Toggle */
+        .toggle-theme {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #1e3a8a;
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+        }
 
-    .toggle-theme:hover {
-      background: #66a6ff;
-    }
+        body.dark .toggle-theme {
+            background: #93c5fd;
+            color: #1e3a8a;
+        }
 
-    @media (max-width: 600px) {
-      header {
-        font-size: 1.5em;
-      }
-
-      .btn, .options button {
-        font-size: 14px;
-        padding: 10px 14px;
-      }
-
-      .container {
-        padding: 20px;
-      }
-    }
-  </style>
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            header {
+                font-size: 2em;
+                margin-bottom: 30px;
+            }
+            .content-wrapper {
+                padding: 20px 10px;
+            }
+            .section-grid {
+                grid-template-columns: 1fr; 
+            }
+            .container {
+                padding: 20px;
+                padding-top: 50px;
+            }
+            .options {
+                grid-template-columns: 1fr; 
+            }
+            .back-btn {
+                top: 15px;
+                left: 15px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="toggle-theme" onclick="toggleTheme()">🌙</div>
-  <header>MCQ Practice - Section Wise</header>
+    <div class="toggle-theme" onclick="toggleTheme()">🌙</div>
+    
+    <div class="content-wrapper">
+        <header>MCQ Practice - Section Wise</header>
+        
+        <div class="section-grid">
+            <button class="btn" onclick="start('alpha')">Alphabet ↔ Number</button>
+            <button class="btn" onclick="start('cube')">Cube Roots</button>
+            <button class="btn" onclick="start('square')">Square Roots</button>
+            <button class="btn" onclick="start('perc')">Percentage to Fraction</button>
+            <button class="btn" onclick="start('multi')">Speed Multiplication</button>
+        </div>
+        
+        <div id="alphaSection" class="container">
+            <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
+            <h2>Alphabet ↔ Number</h2>
+            <div class="topscore">Top Score: 20s</div>
+            <div class="timer" id="alphaTimer">Time: 0s</div>
+            <div class="question-card"><div class="question" id="alphaQ">Loading...</div></div>
+            <div class="options" id="alphaOpts"></div>
+            <div class="result" id="alphaRes"></div>
+            <button class="submit-btn" id="alphaSubmit">Submit Section</button>
+        </div>
+        
+        <div id="cubeSection" class="container">
+            <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
+            <h2>Cube Roots</h2>
+            <div class="topscore">Top Score: 20s</div>
+            <div class="timer" id="cubeTimer">Time: 0s</div>
+            <div class="question-card"><div class="question" id="cubeQ">Loading...</div></div>
+            <div class="options" id="cubeOpts"></div>
+            <div class="result" id="cubeRes"></div>
+            <button class="submit-btn" id="cubeSubmit">Submit Section</button>
+        </div>
+        
+        <div id="squareSection" class="container">
+            <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
+            <h2>Square Roots</h2>
+            <div class="topscore">Top Score: 20s</div>
+            <div class="timer" id="squareTimer">Time: 0s</div>
+            <div class="question-card"><div class="question" id="squareQ">Loading...</div></div>
+            <div class="options" id="squareOpts"></div>
+            <div class="result" id="squareRes"></div>
+            <button class="submit-btn" id="squareSubmit">Submit Section</button>
+        </div>
+        
+        <div id="percSection" class="container">
+            <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
+            <h2>Percentage to Fraction</h2>
+            <div class="timer" id="percTimer">Time: 0s</div>
+            <div class="question-card"><div class="question" id="percQ">Loading question...</div></div>
+            <div class="options" id="percOpts"></div>
+            <div class="result" id="percRes"></div>
+            <button class="submit-btn" id="percSubmit">Submit Section</button>
+        </div>
+        
+        <div id="multiSection" class="container">
+            <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
+            <h2>Speed Multiplication (Tables 10–30)</h2>
+            <div class="timer" id="multiTimer">Time: 0s</div>
+            <div class="question-card"><div class="question" id="multiQ">Loading question...</div></div>
+            <div class="options" id="multiOpts"></div>
+            <div class="result" id="multiRes"></div>
+            <button class="submit-btn" id="multiSubmit">Submit Section</button>
+        </div>
+    </div>
 
-  <div class="grid">
-    <button class="btn" onclick="start('alpha')">Alphabet ↔ Number</button>
-    <button class="btn" onclick="start('cube')">Cube Roots</button>
-    <button class="btn" onclick="start('square')">Square Roots</button>
-    <button class="btn" onclick="start('perc')">Percentage to Fraction</button>
-    <button class="btn" onclick="start('multi')">Speed Multiplication</button>
-  </div>
+    <footer>
+        Designed & Developed by <strong>S.Sivasaran</strong> — Insta:
+        <a href="https://instagram.com/sivasaran_official" target="_blank">@sivasaran_official</a>
+    </footer>
 
-  <div id="alphaSection" class="container">
-    <h2>Alphabet ↔ Number</h2>
-    <div class="topscore">Top Score: 20s</div>
-    <div class="timer" id="alphaTimer">Time: 0s</div>
-    <div class="question" id="alphaQ">Loading...</div>
-    <div class="options" id="alphaOpts"></div>
-    <div class="result" id="alphaRes"></div>
-    <button class="submit-btn" id="alphaSubmit">Submit Section</button>
-  </div>
-
-  <div id="cubeSection" class="container">
-    <h2>Cube Roots</h2>
-    <div class="topscore">Top Score: 20s</div>
-    <div class="timer" id="cubeTimer">Time: 0s</div>
-    <div class="question" id="cubeQ">Loading...</div>
-    <div class="options" id="cubeOpts"></div>
-    <div class="result" id="cubeRes"></div>
-    <button class="submit-btn" id="cubeSubmit">Submit Section</button>
-  </div>
-
-  <div id="squareSection" class="container">
-    <h2>Square Roots</h2>
-    <div class="topscore">Top Score: 20s</div>
-    <div class="timer" id="squareTimer">Time: 0s</div>
-    <div class="question" id="squareQ">Loading...</div>
-    <div class="options" id="squareOpts"></div>
-    <div class="result" id="squareRes"></div>
-    <button class="submit-btn" id="squareSubmit">Submit Section</button>
-  </div>
-
-  <div id="percSection" class="container">
-    <h2>Percentage to Fraction</h2>
-    <div class="timer" id="percTimer">Time: 0s</div>
-    <div class="question" id="percQ">Loading question...</div>
-    <div class="options" id="percOpts"></div>
-    <div class="result" id="percRes"></div>
-    <button class="submit-btn" id="percSubmit">Submit Section</button>
-  </div>
-
-  <div id="multiSection" class="container">
-    <h2>Speed Multiplication (Tables 10–30)</h2>
-    <div class="timer" id="multiTimer">Time: 0s</div>
-    <div class="question" id="multiQ">Loading question...</div>
-    <div class="options" id="multiOpts"></div>
-    <div class="result" id="multiRes"></div>
-    <button class="submit-btn" id="multiSubmit">Submit Section</button>
-  </div>
-
-  <footer>
-    Designed & Developed by <strong>S.Sivasaran</strong> — Insta:
-    <a href="https://instagram.com/sivasaran_official" target="_blank">@sivasaran_official</a>
-  </footer>
-
-  <script>
-    function toggleTheme() {
-      document.body.classList.toggle("dark");
-      document.querySelector(".toggle-theme").textContent = 
-        document.body.classList.contains("dark") ? "☀️" : "🌙";
-    }
-
-    function shuffle(a){return a.sort(()=>Math.random()-0.5);}
-
-    function genAlphaQs(n=40){
-      const qs=[];
-      for(let i=0;i<n;i++){
-        if(Math.random()>0.5){
-          let letter=String.fromCharCode(65+Math.floor(Math.random()*26));
-          let ans=letter.charCodeAt(0)-64;
-          let options=shuffle([ans,ans+1,ans-1,ans+2]);
-          qs.push({q:`What is the number for letter ${letter}?`,ans:String(ans),opts:options.map(o=>String(o))});
-        }else{
-          let num=1+Math.floor(Math.random()*26);
-          let ans=String.fromCharCode(64+num);
-          let wrongs=[String.fromCharCode(64+((num+1-1)%26+1)),String.fromCharCode(64+((num+2-1)%26+1)),String.fromCharCode(64+((num+3-1)%26+1))];
-          let options=shuffle([ans,...wrongs]);
-          qs.push({q:`Which letter is number ${num}?`,ans:ans,opts:options});
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+            document.querySelector(".toggle-theme").textContent = 
+                document.body.classList.contains("dark") ? "☀️" : "🌙";
         }
-      }
-      return qs;
-    }
 
-    function genCubeQs(n=40){
-      const qs=[];
-      for(let i=0;i<n;i++){
-        let num=2+Math.floor(Math.random()*20);
-        let cube=num*num*num;
-        let options=shuffle([num,num+1,num-1,num+2]);
-        qs.push({q:`Cube root of ${cube} = ?`,ans:String(num),opts:options.map(o=>String(o))});
-      }
-      return qs;
-    }
-
-    function genSquareQs(n=40){
-      const qs=[];
-      for(let i=0;i<n;i++){
-        let num=2+Math.floor(Math.random()*40);
-        let sq=num*num;
-        let options=shuffle([num,num+1,num-1,num+2]);
-        qs.push({q:`Square root of ${sq} = ?`,ans:String(num),opts:options.map(o=>String(o))});
-      }
-      return qs;
-    }
-
-    const percQs=[];
-    for(let num=1;num<=10;num++){
-      for(let den=1;den<=16;den++){
-        if(num<den){
-          const percent=((num/den)*100).toFixed(2).replace(/\.00$/,'');
-          const answer=`${num}/${den}`;
-          let options=new Set();
-          options.add(answer);
-          while(options.size<4){
-            let rNum=Math.floor(Math.random()*10)+1;
-            let rDen=Math.floor(Math.random()*16)+1;
-            if(rNum<rDen) options.add(`${rNum}/${rDen}`);
-          }
-          percQs.push({q:`Convert ${percent}% to Fraction:`,ans:answer,opts:shuffle([...options])});
+        /* ---------------------------------------------------------------------- */
+        /* NEW: goBack function */
+        /* ---------------------------------------------------------------------- */
+        function goBack() {
+            // Hide all section containers
+            document.querySelectorAll('.container').forEach(c => c.style.display = 'none');
+            // Show the main grid
+            document.querySelector('.section-grid').style.display = 'grid';
         }
-      }
-    }
+        
+        /* ---------------------------------------------------------------------- */
+        /* Quiz Logic (Only start() function updated to hide grid) */
+        /* ---------------------------------------------------------------------- */
 
-    function genMultiQs(n=30){
-      const qs=[];
-      for(let i=0;i<n;i++){
-        let table=Math.floor(Math.random()*21)+10; // 10 to 30
-        let num=Math.floor(Math.random()*30)+1;    // 1 to 30
-        let ans=table*num;
-        let options=shuffle([ans,ans+1,ans-1,ans+table]);
-        qs.push({q:`${table} × ${num} = ?`,ans:String(ans),opts:options.map(o=>String(o))});
-      }
-      return qs;
-    }
+        function shuffle(a){return a.sort(()=>Math.random()-0.5);}
 
-    function startSection(sectionId,qs){
-      let idx=0,score=0,timer=0,interval;
-      let wrongs=[];
-      let totalTime=0,attempted=0;
-      const qEl=document.getElementById(sectionId+"Q");
-      const oEl=document.getElementById(sectionId+"Opts");
-      const rEl=document.getElementById(sectionId+"Res");
-      const tEl=document.getElementById(sectionId+"Timer");
-      const sBtn=document.getElementById(sectionId+"Submit");
-      const topEl=document.querySelector(`#${sectionId}Section .topscore`);
-
-      function startTimer(){
-        timer=0; clearInterval(interval);
-        interval=setInterval(()=>{timer++;tEl.textContent=`Time: ${timer}s`;},1000);
-      }
-      function stopTimer(){clearInterval(interval);}
-
-      function load(){
-        rEl.textContent="";
-        if(idx>=qs.length){
-          qEl.textContent="Completed!";
-          oEl.innerHTML="";
-          stopTimer();
-          return;
+        function genAlphaQs(n=40){
+            const qs=[];
+            for(let i=0;i<n;i++){
+                if(Math.random()>0.5){
+                    let letter=String.fromCharCode(65+Math.floor(Math.random()*26));
+                    let ans=letter.charCodeAt(0)-64;
+                    let options=shuffle([ans,ans+1,ans-1,ans+2]);
+                    qs.push({q:`What is the number for letter ${letter}?`,ans:String(ans),opts:options.map(o=>String(o))});
+                }else{
+                    let num=1+Math.floor(Math.random()*26);
+                    let ans=String.fromCharCode(64+num);
+                    let wrongs=[String.fromCharCode(64+((num+1-1)%26+1)),String.fromCharCode(64+((num+2-1)%26+1)),String.fromCharCode(64+((num+3-1)%26+1))];
+                    let options=shuffle([ans,...wrongs]);
+                    qs.push({q:`Which letter is number ${num}?`,ans:ans,opts:options});
+                }
+            }
+            return qs;
         }
-        const q=qs[idx];
-        qEl.textContent=q.q;
-        oEl.innerHTML="";
-        q.opts.forEach(opt=>{
-          const b=document.createElement("button");
-          b.textContent=opt;
-          b.onclick=()=>check(opt);
-          oEl.appendChild(b);
-        });
-        startTimer();
-      }
 
-      function check(opt){
-        stopTimer();
-        attempted++;
-        totalTime+=timer;
-        const correct = qs[idx].ans;
-        if(opt===correct){
-          score++;
-          rEl.textContent=`✅ Correct! | Time: ${timer}s`;
-          if(timer<20 && topEl) topEl.textContent=`Top Score: ${timer}s`;
-        }else{
-          rEl.textContent=`❌ Wrong! Correct: ${correct} | Your: ${opt} | Time: ${timer}s`;
-          wrongs.push({q:qs[idx].q,your:opt,correct,time:timer});
+        function genCubeQs(n=40){
+            const qs=[];
+            for(let i=0;i<n;i++){
+                let num=2+Math.floor(Math.random()*20);
+                let cube=num*num*num;
+                let options=shuffle([num,num+1,num-1,num+2]);
+                qs.push({q:`Cube root of ${cube} = ?`,ans:String(num),opts:options.map(o=>String(o))});
+            }
+            return qs;
         }
-        idx++;
-        setTimeout(load,500);
-      }
 
-      sBtn.onclick=()=>{
-        stopTimer();
-        qEl.textContent=`Section Completed. Score: ${score}/${attempted}`;
-        oEl.innerHTML="";
-        let review=document.createElement("div");
-        review.className="review";
-        let wrongHtml="<h3>Review Wrong Answers:</h3>";
-        if(wrongs.length===0){wrongHtml+="<p>All correct 🎉</p>";}
-        else{
-          wrongs.forEach((w,i)=>{
-            wrongHtml+=`<p><b>Q${i+1}:</b> ${w.q}<br>Your: ${w.your} | Correct: ${w.correct} | Time: ${w.time}s</p>`;
-          });
+        function genSquareQs(n=40){
+            const qs=[];
+            for(let i=0;i<n;i++){
+                let num=2+Math.floor(Math.random()*40);
+                let sq=num*num;
+                let options=shuffle([num,num+1,num-1,num+2]);
+                qs.push({q:`Square root of ${sq} = ?`,ans:String(num),opts:options.map(o=>String(o))});
+            }
+            return qs;
         }
-        let avgTime=(attempted>0?(totalTime/attempted):0).toFixed(2);
-        let accuracy=(attempted>0?((score/attempted)*100):0).toFixed(2);
-        wrongHtml+=`<div class="summary"><b>Summary:</b><br>Attempted: ${attempted}<br>Accuracy: ${accuracy}%<br>Average Time: ${avgTime}s</div>`;
-        review.innerHTML=wrongHtml;
-        rEl.innerHTML="";
-        rEl.appendChild(review);
-      };
 
-      load();
-    }
+        const percQs=[];
+        for(let num=1;num<=10;num++){
+            for(let den=1;den<=16;den++){
+                if(num<den){
+                    const percent=((num/den)*100).toFixed(2).replace(/\.00$/,'');
+                    const answer=`${num}/${den}`;
+                    let options=new Set();
+                    options.add(answer);
+                    while(options.size<4){
+                        let rNum=Math.floor(Math.random()*10)+1;
+                        let rDen=Math.floor(Math.random()*16)+1;
+                        if(rNum<rDen) options.add(`${rNum}/${rDen}`);
+                    }
+                    percQs.push({q:`Convert ${percent}% to Fraction:`,ans:answer,opts:shuffle([...options])});
+                }
+            }
+        }
 
-    function start(id){
-      document.querySelectorAll('.container').forEach(c=>c.style.display='none');
-      document.getElementById(id+'Section').style.display='block';
-      if(id==='alpha') startSection('alpha',genAlphaQs());
-      if(id==='cube') startSection('cube',genCubeQs());
-      if(id==='square') startSection('square',genSquareQs());
-      if(id==='perc') startSection('perc',percQs);
-      if(id==='multi') startSection('multi',genMultiQs());
-    }
-  </script>
+        function genMultiQs(n=30){
+            const qs=[];
+            for(let i=0;i<n;i++){
+                let table=Math.floor(Math.random()*21)+10; // 10 to 30
+                let num=Math.floor(Math.random()*30)+1;    // 1 to 30
+                let ans=table*num;
+                let options=shuffle([ans,ans+1,ans-1,ans+table]);
+                qs.push({q:`${table} × ${num} = ?`,ans:String(ans),opts:options.map(o=>String(o))});
+            }
+            return qs;
+        }
+
+        // Timer, Load, and Check functions for the quiz sections
+        function startSection(sectionId,qs){
+            let idx=0,score=0,timer=0,interval;
+            let wrongs=[];
+            let totalTime=0,attempted=0;
+            const qEl=document.getElementById(sectionId+"Q");
+            const oEl=document.getElementById(sectionId+"Opts");
+            const rEl=document.getElementById(sectionId+"Res");
+            const tEl=document.getElementById(sectionId+"Timer");
+            const sBtn=document.getElementById(sectionId+"Submit");
+            const topEl=document.querySelector(`#${sectionId}Section .topscore`);
+
+            function startTimer(){
+                timer=0; clearInterval(interval);
+                interval=setInterval(()=>{timer++;tEl.textContent=`Time: ${timer}s`;},1000);
+            }
+            function stopTimer(){clearInterval(interval);}
+
+            function load(){
+                rEl.textContent="";
+                if(idx>=qs.length){
+                    qEl.textContent="Completed!";
+                    oEl.innerHTML="";
+                    stopTimer();
+                    return;
+                }
+                const q=qs[idx];
+                qEl.textContent=q.q;
+                oEl.innerHTML="";
+                q.opts.forEach(opt=>{
+                    const b=document.createElement("button");
+                    b.textContent=opt;
+                    b.onclick=()=>check(opt);
+                    oEl.appendChild(b);
+                });
+                startTimer();
+            }
+
+            function check(opt){
+                stopTimer();
+                attempted++;
+                totalTime+=timer;
+                const correct = qs[idx].ans;
+                if(opt===correct){
+                    score++;
+                    rEl.textContent=`✅ Correct! | Time: ${timer}s`;
+                    if(topEl && sectionId!=='perc' && sectionId!=='multi'){ 
+                        let currentTopScore = parseInt(topEl.textContent.match(/\d+/)[0]);
+                        if(timer < currentTopScore) topEl.textContent=`Top Score: ${timer}s`;
+                    }
+                }else{
+                    rEl.textContent=`❌ Wrong! Correct: ${correct} | Your: ${opt} | Time: ${timer}s`;
+                    wrongs.push({q:qs[idx].q,your:opt,correct,time:timer});
+                }
+                idx++;
+                setTimeout(load,500);
+            }
+
+            sBtn.onclick=()=>{
+                stopTimer();
+                qEl.textContent=`Section Completed. Score: ${score}/${attempted}`;
+                oEl.innerHTML="";
+                let review=document.createElement("div");
+                review.className="review";
+                let wrongHtml="<h3>Review Wrong Answers:</h3>";
+                if(wrongs.length===0){wrongHtml+="<p>All correct 🎉</p>";}
+                else{
+                    wrongs.forEach((w,i)=>{
+                        wrongHtml+=`<p class="review-item"><b>Q${i+1}:</b> ${w.q}<br>Your: ${w.your} | Correct: ${w.correct} | Time: ${w.time}s</p>`;
+                    });
+                }
+                let avgTime=(attempted>0?(totalTime/attempted):0).toFixed(2);
+                let accuracy=(attempted>0?((score/attempted)*100):0).toFixed(2);
+                wrongHtml+=`<div class="summary"><b>Summary:</b><br>Attempted: ${attempted}<br>Accuracy: ${accuracy}%<br>Average Time: ${avgTime}s</div>`;
+                review.innerHTML=wrongHtml;
+                rEl.innerHTML="";
+                rEl.appendChild(review);
+            };
+
+            load();
+        }
+
+
+        function start(id){
+            // Hide all containers
+            document.querySelectorAll('.container').forEach(c=>c.style.display='none');
+            // Hide the grid
+            document.querySelector('.section-grid').style.display = 'none';
+            // Show the selected section
+            document.getElementById(id+'Section').style.display='block';
+
+            // Start the section
+            if(id==='alpha') startSection('alpha',genAlphaQs());
+            if(id==='cube') startSection('cube',genCubeQs());
+            if(id==='square') startSection('square',genSquareQs());
+            if(id==='perc') startSection('perc',percQs);
+            if(id==='multi') startSection('multi',genMultiQs());
+        }
+    </script>
 </body>
 </html>
-

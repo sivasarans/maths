@@ -5,389 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MCQ Practice - Section Wise</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
     <style>
-        /* Global Reset and Typography */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: "Poppins", sans-serif;
-            scroll-behavior: smooth;
+        *{box-sizing:border-box;margin:0;padding:0;font-family:"Poppins",sans-serif;scroll-behavior:smooth;}
+        @keyframes gradient-animation{
+            0%{background-position:0% 50%;}
+            50%{background-position:100% 50%;}
+            100%{background-position:0% 50%;}
         }
-
-        /* ---------------------------------------------------------------------- */
-        /* UPDATED: Live UI Background Animation with 10+ colors */
-        /* ---------------------------------------------------------------------- */
-
-        /* Define the animation keyframes */
-        @keyframes gradient-animation {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
+        body{
+            color:#333;
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            transition:0.4s;
+            background:linear-gradient(135deg,#87CEEB,#7FFFD4,#98FB98,#EEE8AA,#FFDAB9,#F08080,#E6E6FA,#CCCCFF,#D8BFD8,#E5E4E2);
+            background-size:300% 300%;
+            animation:gradient-animation 8s ease infinite;
         }
-
-        /* Core Layout: Sticky Footer Pattern with Animated Background */
-        body {
-            color: #333;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            transition: 0.4s;
-
-            /* 🌟 Apply 10 vibrant colors for a dynamic transition 🌟 */
-            background: linear-gradient(
-                135deg, 
-                #87CEEB, /* Sky Blue */
-                #7FFFD4, /* Aquamarine */
-                #98FB98, /* Mint Green */
-                #EEE8AA, /* Pale Goldenrod */
-                #FFDAB9, /* Peach Puff */
-                #F08080, /* Light Coral */
-                #E6E6FA, /* Lavender */
-                #CCCCFF, /* Periwinkle */
-                #D8BFD8, /* Thistle */
-                #E5E4E2 /* Platinum Gray */
-            ); 
-            background-size: 300% 300%; 
-            /* MODIFIED: Speeding up to 8s for a more vibrant, live effect */
-            animation: gradient-animation 8s ease infinite; 
+        body.dark{
+            color:#f8f8f8;
+            background:linear-gradient(135deg,#1f2937,#0f172a,#374151);
+            background-size:300% 300%;
+            animation:gradient-animation 12s ease infinite;
         }
-
-        /* Dark Theme - Apply moving gradient with darker, calming colors */
-        body.dark {
-            color: #f8f8f8;
-            background: linear-gradient(135deg, #1f2937, #0f172a, #374151);
-            background-size: 300% 300%;
-            /* Speeding up to 12s for the dark theme */
-            animation: gradient-animation 12s ease infinite;
+        .back-btn{
+            position:absolute;top:20px;left:20px;background:none;border:none;font-size:1.2rem;color:#1e3a8a;cursor:pointer;font-weight:600;transition:color 0.2s,transform 0.2s;
         }
-        
-        /* ---------------------------------------------------------------------- */
-        /* Back Button Style */
-        /* ---------------------------------------------------------------------- */
-        .back-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: none;
-            border: none;
-            font-size: 1.2rem;
-            color: #1e3a8a;
-            cursor: pointer;
-            font-weight: 600;
-            transition: color 0.2s, transform 0.2s;
-        }
-        .back-btn:hover {
-            color: #3b82f6;
-            transform: translateX(-3px);
-        }
-        body.dark .back-btn {
-            color: #93c5fd;
-        }
-        body.dark .back-btn:hover {
-            color: #60a5fa;
-        }
-
-        /* ---------------------------------------------------------------------- */
-        /* EXISTING CSS (Refined for cleanliness) */
-        /* ---------------------------------------------------------------------- */
-        
-        .content-wrapper {
-            flex-grow: 1; 
-            width: 100%;
-            max-width: 1200px;
-            padding: 40px 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        header {
-            text-align: center;
-            font-size: 2.5em;
-            font-weight: 700;
-            color: #1e3a8a; 
-            margin-bottom: 40px;
-            letter-spacing: 1px;
-            z-index: 10; 
-        }
-
-        body.dark header {
-            color: #93c5fd; 
-        }
-
-        .section-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
-            width: 100%;
-            max-width: 900px; 
-            margin-bottom: 40px;
-            padding: 0 10px;
-        }
-
-        /* Section Button Styling (Card-like) */
-        .btn {
-            background: #ffffff; 
-            color: #1e3a8a;
-            border: 1px solid #d1d5db;
-            padding: 30px 20px;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); 
-            z-index: 10;
-        }
-
-        .btn:hover {
-            transform: translateY(-4px); 
-            background: #eff6ff; 
-            border-color: #3b82f6; 
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.2);
-        }
-
-        body.dark .btn {
-            background: #1f2937;
-            color: #93c5fd;
-            border-color: #374151;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
-
-        body.dark .btn:hover {
-            background: #374151;
-            border-color: #60a5fa;
-            transform: translateY(-4px);
-            box-shadow: 0 8px 20px rgba(96, 165, 250, 0.2);
-        }
-        
-        /* Section Container (Quiz View) */
-        .container {
-            position: relative; /* Needed for positioning the back button */
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(5px); 
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            padding: 40px;
-            padding-top: 70px; /* Added space for the back button */
-            width: 100%;
-            max-width: 700px;
-            transition: 0.4s;
-            display: none;
-            margin-top: 20px;
-            overflow-y: auto;
-            z-index: 20;
-        }
-
-        body.dark .container {
-            background: rgba(31, 41, 55, 0.95);
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 15px;
-            font-size: 1.8em;
-            color: #1e3a8a;
-        }
-
-        body.dark h2 {
-            color: #93c5fd;
-        }
-
-        .topscore, .timer {
-            text-align: center;
-            font-size: 1.1rem;
-            margin: 8px 0;
-            font-weight: 600;
-        }
-
-        .timer {
-            color: #f59e0b; 
-        }
-
-        .topscore {
-            color: #10b981; 
-        }
-
-        .question-card {
-            text-align: center;
-            background: #f9fafb;
-            padding: 25px;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        body.dark .question-card {
-            background: #374151;
-        }
-
-        .question {
-            font-weight: 600;
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .options {
-            display: grid;
-            grid-template-columns: 1fr 1fr; 
-            gap: 15px;
-        }
-
-        .options button {
-            background: #f3f4f6;
-            color: #333;
-            padding: 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            font-weight: 500;
-            border: 1px solid #e5e7eb;
-            text-align: center;
-        }
-
-        .options button:hover {
-            background: #dbeafe;
-            color: #1e3a8a;
-            border-color: #60a5fa;
-        }
-
-        body.dark .options button {
-            background: #4b5563;
-            color: #f8f8f8;
-            border-color: #4b5563;
-        }
-
-        body.dark .options button:hover {
-            background: #60a5fa;
-            color: #1e3a8a;
-        }
-
-        .submit-btn {
-            display: block;
-            margin: 30px auto 0;
-            background: #10b981; 
-            color: white;
-            font-weight: 700;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-            font-size: 1.05rem;
-        }
-
-        .submit-btn:hover {
-            background: #059669;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
-        }
-
-        /* Footer Styling */
-        footer {
-            width: 100%;
-            padding: 15px 20px;
-            background: #ffffff; 
-            border-top: 1px solid #e5e7eb;
-            text-align: center;
-            font-size: 0.9em;
-            color: #6b7280; 
-            transition: 0.4s;
-            z-index: 10;
-        }
-
-        body.dark footer {
-            background: #1e293b; 
-            border-top: 1px solid #374151;
-            color: #9ca3af;
-        }
-
-        footer a {
-            color: #3b82f6;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.2s;
-        }
-        footer a:hover {
-            color: #1e3a8a;
-        }
-        body.dark footer a {
-            color: #60a5fa;
-        }
-        body.dark footer a:hover {
-            color: #93c5fd;
-        }
-
-        /* Theme Toggle */
-        .toggle-theme {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: #1e3a8a;
-            color: white;
-            padding: 12px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 100;
-        }
-
-        body.dark .toggle-theme {
-            background: #93c5fd;
-            color: #1e3a8a;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            header {
-                font-size: 2em;
-                margin-bottom: 30px;
-            }
-            .content-wrapper {
-                padding: 20px 10px;
-            }
-            .section-grid {
-                grid-template-columns: 1fr; 
-            }
-            .container {
-                padding: 20px;
-                padding-top: 50px;
-            }
-            .options {
-                grid-template-columns: 1fr; 
-            }
-            .back-btn {
-                top: 15px;
-                left: 15px;
-            }
-        }
+        .back-btn:hover{color:#3b82f6;transform:translateX(-3px);}
+        body.dark .back-btn{color:#93c5fd;}
+        body.dark .back-btn:hover{color:#60a5fa;}
+        .content-wrapper{flex-grow:1;width:100%;max-width:1200px;padding:40px 20px;display:flex;flex-direction:column;align-items:center;}
+        header{text-align:center;font-size:2.5em;font-weight:700;color:#1e3a8a;margin-bottom:40px;letter-spacing:1px;z-index:10;}
+        body.dark header{color:#93c5fd;}
+        .section-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;width:100%;max-width:900px;margin-bottom:40px;padding:0 10px;}
+        .btn{background:#ffffff;color:#1e3a8a;border:1px solid #d1d5db;padding:30px 20px;border-radius:12px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);z-index:10;}
+        .btn:hover{transform:translateY(-4px);background:#eff6ff;border-color:#3b82f6;box-shadow:0 8px 20px rgba(59,130,246,0.2);}
+        body.dark .btn{background:#1f2937;color:#93c5fd;border-color:#374151;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
+        body.dark .btn:hover{background:#374151;border-color:#60a5fa;transform:translateY(-4px);box-shadow:0 8px 20px rgba(96,165,250,0.2);}
+        .container{position:relative;background:rgba(255,255,255,0.95);backdrop-filter:blur(5px);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.1);padding:40px;padding-top:70px;width:100%;max-width:700px;transition:0.4s;display:none;margin-top:20px;overflow-y:auto;z-index:20;}
+        body.dark .container{background:rgba(31,41,55,0.95);}
+        h2{text-align:center;margin-bottom:15px;font-size:1.8em;color:#1e3a8a;}
+        body.dark h2{color:#93c5fd;}
+        .topscore,.timer{text-align:center;font-size:1.1rem;margin:8px 0;font-weight:600;}
+        .timer{color:#f59e0b;}
+        .topscore{color:#10b981;}
+        .question-card{text-align:center;background:#f9fafb;padding:25px;border-radius:12px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,0.05);}
+        body.dark .question-card{background:#374151;}
+        .question{font-weight:600;font-size:1.2rem;margin-bottom:20px;}
+        .options{display:grid;grid-template-columns:1fr 1fr;gap:15px;}
+        .options button{background:#f3f4f6;color:#333;padding:15px;border-radius:8px;cursor:pointer;transition:all 0.2s ease;font-weight:500;border:1px solid #e5e7eb;text-align:center;}
+        .options button:hover{background:#dbeafe;color:#1e3a8a;border-color:#60a5fa;}
+        body.dark .options button{background:#4b5563;color:#f8f8f8;border-color:#4b5563;}
+        body.dark .options button:hover{background:#60a5fa;color:#1e3a8a;}
+        .submit-btn{display:block;margin:30px auto 0;background:#10b981;color:white;font-weight:700;padding:12px 25px;border:none;border-radius:8px;cursor:pointer;transition:0.3s;font-size:1.05rem;}
+        .submit-btn:hover{background:#059669;transform:translateY(-2px);box-shadow:0 4px 8px rgba(16,185,129,0.3);}
+        footer{width:100%;padding:15px 20px;background:#ffffff;border-top:1px solid #e5e7eb;text-align:center;font-size:0.9em;color:#6b7280;transition:0.4s;z-index:10;}
+        body.dark footer{background:#1e293b;border-top:1px solid #374151;color:#9ca3af;}
+        footer a{color:#3b82f6;text-decoration:none;font-weight:600;transition:color 0.2s;}
+        footer a:hover{color:#1e3a8a;}
+        body.dark footer a{color:#60a5fa;}
+        body.dark footer a:hover{color:#93c5fd;}
+        .toggle-theme{position:fixed;top:20px;right:20px;background:#1e3a8a;color:white;padding:12px;border-radius:50%;cursor:pointer;transition:0.3s;box-shadow:0 4px 8px rgba(0,0,0,0.2);z-index:100;}
+        body.dark .toggle-theme{background:#93c5fd;color:#1e3a8a;}
+        @media(max-width:768px){header{font-size:2em;margin-bottom:30px;}.content-wrapper{padding:20px 10px;}.section-grid{grid-template-columns:1fr;}.container{padding:20px;padding-top:50px;}.options{grid-template-columns:1fr;}.back-btn{top:15px;left:15px;}}
+        .review{margin-top:12px;}
+        .review-item{margin-bottom:8px;font-size:0.95rem;}
+        .summary{margin-top:12px;font-size:0.95rem;}
     </style>
 </head>
 <body>
     <div class="toggle-theme" onclick="toggleTheme()">🌙</div>
-    
     <div class="content-wrapper">
         <header>MCQ Practice - Section Wise</header>
-        
         <div class="section-grid">
             <button class="btn" onclick="start('alpha')">Alphabet ↔ Number</button>
             <button class="btn" onclick="start('cube')">Cube Roots</button>
             <button class="btn" onclick="start('square')">Square Roots</button>
             <button class="btn" onclick="start('perc')">Percentage to Fraction</button>
             <button class="btn" onclick="start('multi')">Speed Multiplication</button>
+            <button class="btn" onclick="start('percentNum')">Percentage × Number Practice</button>
         </div>
-        
+        <!-- Containers for each section -->
         <div id="alphaSection" class="container">
             <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
             <h2>Alphabet ↔ Number</h2>
@@ -398,7 +97,6 @@
             <div class="result" id="alphaRes"></div>
             <button class="submit-btn" id="alphaSubmit">Submit Section</button>
         </div>
-        
         <div id="cubeSection" class="container">
             <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
             <h2>Cube Roots</h2>
@@ -409,7 +107,6 @@
             <div class="result" id="cubeRes"></div>
             <button class="submit-btn" id="cubeSubmit">Submit Section</button>
         </div>
-        
         <div id="squareSection" class="container">
             <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
             <h2>Square Roots</h2>
@@ -420,7 +117,6 @@
             <div class="result" id="squareRes"></div>
             <button class="submit-btn" id="squareSubmit">Submit Section</button>
         </div>
-        
         <div id="percSection" class="container">
             <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
             <h2>Percentage to Fraction</h2>
@@ -430,46 +126,40 @@
             <div class="result" id="percRes"></div>
             <button class="submit-btn" id="percSubmit">Submit Section</button>
         </div>
-        
         <div id="multiSection" class="container">
             <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
-            <h2>Speed Multiplication (Tables 10–30)</h2>
+            <h2>Speed Multiplication</h2>
             <div class="timer" id="multiTimer">Time: 0s</div>
             <div class="question-card"><div class="question" id="multiQ">Loading question...</div></div>
             <div class="options" id="multiOpts"></div>
             <div class="result" id="multiRes"></div>
             <button class="submit-btn" id="multiSubmit">Submit Section</button>
         </div>
+        <div id="percentNumSection" class="container">
+            <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
+            <h2>Percentage × Number Practice</h2>
+            <div class="timer" id="percentNumTimer">Time: 0s</div>
+            <div class="question-card"><div class="question" id="percentNumQ">Loading question...</div></div>
+            <div class="options" id="percentNumOpts"></div>
+            <div class="result" id="percentNumRes"></div>
+            <button class="submit-btn" id="percentNumSubmit">Submit Section</button>
+        </div>
     </div>
-
     <footer>
         Designed & Developed by <strong>S.Sivasaran</strong> — Insta:
         <a href="https://instagram.com/sivasaran_official" target="_blank">@sivasaran_official</a>
     </footer>
 
     <script>
-        function toggleTheme() {
+        function toggleTheme(){
             document.body.classList.toggle("dark");
-            document.querySelector(".toggle-theme").textContent = 
-                document.body.classList.contains("dark") ? "☀️" : "🌙";
+            document.querySelector(".toggle-theme").textContent = document.body.classList.contains("dark")?"☀️":"🌙";
         }
-
-        /* ---------------------------------------------------------------------- */
-        /* NEW: goBack function */
-        /* ---------------------------------------------------------------------- */
-        function goBack() {
-            // Hide all section containers
-            document.querySelectorAll('.container').forEach(c => c.style.display = 'none');
-            // Show the main grid
-            document.querySelector('.section-grid').style.display = 'grid';
+        function goBack(){
+            document.querySelectorAll('.container').forEach(c=>c.style.display='none');
+            document.querySelector('.section-grid').style.display='grid';
         }
-        
-        /* ---------------------------------------------------------------------- */
-        /* Quiz Logic (Only start() function updated to hide grid) */
-        /* ---------------------------------------------------------------------- */
-
         function shuffle(a){return a.sort(()=>Math.random()-0.5);}
-
         function genAlphaQs(n=40){
             const qs=[];
             for(let i=0;i<n;i++){
@@ -488,7 +178,6 @@
             }
             return qs;
         }
-
         function genCubeQs(n=40){
             const qs=[];
             for(let i=0;i<n;i++){
@@ -499,7 +188,6 @@
             }
             return qs;
         }
-
         function genSquareQs(n=40){
             const qs=[];
             for(let i=0;i<n;i++){
@@ -510,7 +198,6 @@
             }
             return qs;
         }
-
         const percQs=[];
         for(let num=1;num<=10;num++){
             for(let den=1;den<=16;den++){
@@ -528,116 +215,108 @@
                 }
             }
         }
-
         function genMultiQs(n=30){
             const qs=[];
             for(let i=0;i<n;i++){
-                let table=Math.floor(Math.random()*21)+10; // 10 to 30
-                let num=Math.floor(Math.random()*30)+1;    // 1 to 30
+                let table=Math.floor(Math.random()*21)+10;
+                let num=Math.floor(Math.random()*30)+1;
                 let ans=table*num;
                 let options=shuffle([ans,ans+1,ans-1,ans+table]);
                 qs.push({q:`${table} × ${num} = ?`,ans:String(ans),opts:options.map(o=>String(o))});
             }
             return qs;
         }
+        const percentValues=[100,200,300,400,500,600,700,800,900,1000,50,150,250,350,450,33.33,66.66,25,75,20,40,60,80,16.66,83.33,14.28,28.56,42.85,57.14,71.42,85.71,12.5,37.5,62.5,87.5,11.11,22.22,33.33,44.44,55.55,66.66,77.7,88.8,10,30,90,9.09,18.18,27.27,36.36,45.45,54.54,63.6,72.7,81.8,90.9,8.33,16.66,41.66,58.3,66.6,75,83.3,7.69,15.38,23.07,30.76,38.45,46.14,53.83,61.52,69.21,76.9,7.14,21.42,28.57,35.71,49.98,57.12,64.26,71.4,6.66,13.33,20.00,26.66,33.33,40.00,46.6,53.3,60.00,66.6,6.25,12.5,18.75,31.25,43.7,56.2,62.5];
+        const uniquePercents=Array.from(new Set(percentValues.map(v=>Number(parseFloat(v).toFixed(2))))).sort((a,b)=>a-b);
+        function genPercentNumQs(n = 30) {
+    // Define fractions and their percentages
+    const fractions = [
+        {percent: 50, num: 1, den: 2},
+        {percent: 33.33, num: 1, den: 3},
+        {percent: 25, num: 1, den: 4},
+        {percent: 20, num: 1, den: 5},
+        {percent: 16.66, num: 1, den: 6},
+        {percent: 14.28, num: 1, den: 7},
+        {percent: 12.5, num: 1, den: 8},
+        {percent: 11.11, num: 1, den: 9},
+        {percent: 9.09, num: 1, den: 11},
+        {percent: 8.33, num: 1, den: 12},
+        {percent: 7.69, num: 1, den: 13},
+        {percent: 6.66, num: 1, den: 15},
+        {percent: 6.25, num: 1, den: 16},
+        {percent: 44.44, num: 4, den: 9}, // example from instructions
+    ];
 
-        // Timer, Load, and Check functions for the quiz sections
+    const qs = [];
+
+    for (let i = 0; i < n; i++) {
+        // Pick a random fraction
+        const frac = fractions[Math.floor(Math.random() * fractions.length)];
+        // Pick a number divisible by the denominator
+        const multiplier = Math.floor(Math.random() * 10) + 1; // multiplier 1..10
+        const number = frac.den * multiplier;
+
+        // Compute exact integer answer
+        const answer = (frac.num * number) / frac.den;
+
+        // Generate 3 distractor options
+        const optsSet = new Set();
+        optsSet.add(answer);
+        optsSet.add(answer + 1);
+        optsSet.add(Math.max(0, answer - 1));
+        optsSet.add(answer + frac.den); // slight variation
+
+        const optsArr = Array.from(optsSet).slice(0, 4).map(v => String(v));
+        const optsShuffled = shuffle(optsArr);
+
+        qs.push({
+            q: `${frac.percent}% of ${number} = ?`,
+            ans: String(answer),
+            opts: optsShuffled
+        });
+    }
+
+    return qs;
+}
+
         function startSection(sectionId,qs){
-            let idx=0,score=0,timer=0,interval;
-            let wrongs=[];
-            let totalTime=0,attempted=0;
+            let idx=0,score=0,timer=0,interval,wrongs=[],totalTime=0,attempted=0;
             const qEl=document.getElementById(sectionId+"Q");
             const oEl=document.getElementById(sectionId+"Opts");
             const rEl=document.getElementById(sectionId+"Res");
             const tEl=document.getElementById(sectionId+"Timer");
             const sBtn=document.getElementById(sectionId+"Submit");
             const topEl=document.querySelector(`#${sectionId}Section .topscore`);
-
-            function startTimer(){
-                timer=0; clearInterval(interval);
-                interval=setInterval(()=>{timer++;tEl.textContent=`Time: ${timer}s`;},1000);
-            }
+            function startTimer(){timer=0;clearInterval(interval);interval=setInterval(()=>{timer++;tEl.textContent=`Time: ${timer}s`;},1000);}
             function stopTimer(){clearInterval(interval);}
-
             function load(){
                 rEl.textContent="";
-                if(idx>=qs.length){
-                    qEl.textContent="Completed!";
-                    oEl.innerHTML="";
-                    stopTimer();
-                    return;
-                }
+                if(idx>=qs.length){qEl.textContent="Completed!";oEl.innerHTML="";stopTimer();return;}
                 const q=qs[idx];
                 qEl.textContent=q.q;
                 oEl.innerHTML="";
-                q.opts.forEach(opt=>{
-                    const b=document.createElement("button");
-                    b.textContent=opt;
-                    b.onclick=()=>check(opt);
-                    oEl.appendChild(b);
-                });
+                q.opts.forEach(opt=>{const b=document.createElement("button");b.textContent=opt;b.onclick=()=>check(opt);oEl.appendChild(b);});
                 startTimer();
             }
-
             function check(opt){
-                stopTimer();
-                attempted++;
-                totalTime+=timer;
-                const correct = qs[idx].ans;
-                if(opt===correct){
-                    score++;
-                    rEl.textContent=`✅ Correct! | Time: ${timer}s`;
-                    if(topEl && sectionId!=='perc' && sectionId!=='multi'){ 
-                        let currentTopScore = parseInt(topEl.textContent.match(/\d+/)[0]);
-                        if(timer < currentTopScore) topEl.textContent=`Top Score: ${timer}s`;
-                    }
-                }else{
-                    rEl.textContent=`❌ Wrong! Correct: ${correct} | Your: ${opt} | Time: ${timer}s`;
-                    wrongs.push({q:qs[idx].q,your:opt,correct,time:timer});
-                }
-                idx++;
-                setTimeout(load,500);
+                stopTimer();attempted++;totalTime+=timer;const correct=qs[idx].ans;
+                if(opt===correct){score++;rEl.textContent=`✅ Correct! | Time: ${timer}s`;
+                    if(topEl && sectionId!=='perc' && sectionId!=='percentNum'){let currentTopScore=parseInt(topEl.textContent.match(/\d+/)[0]);if(timer<currentTopScore) topEl.textContent=`Top Score: ${timer}s`;}
+                }else{rEl.textContent=`❌ Wrong! Correct: ${correct} | Your: ${opt} | Time: ${timer}s`;wrongs.push({q:qs[idx].q,your:opt,correct,time:timer});}
+                idx++;setTimeout(load,500);
             }
-
-            sBtn.onclick=()=>{
-                stopTimer();
-                qEl.textContent=`Section Completed. Score: ${score}/${attempted}`;
-                oEl.innerHTML="";
-                let review=document.createElement("div");
-                review.className="review";
-                let wrongHtml="<h3>Review Wrong Answers:</h3>";
-                if(wrongs.length===0){wrongHtml+="<p>All correct 🎉</p>";}
-                else{
-                    wrongs.forEach((w,i)=>{
-                        wrongHtml+=`<p class="review-item"><b>Q${i+1}:</b> ${w.q}<br>Your: ${w.your} | Correct: ${w.correct} | Time: ${w.time}s</p>`;
-                    });
-                }
-                let avgTime=(attempted>0?(totalTime/attempted):0).toFixed(2);
-                let accuracy=(attempted>0?((score/attempted)*100):0).toFixed(2);
-                wrongHtml+=`<div class="summary"><b>Summary:</b><br>Attempted: ${attempted}<br>Accuracy: ${accuracy}%<br>Average Time: ${avgTime}s</div>`;
-                review.innerHTML=wrongHtml;
-                rEl.innerHTML="";
-                rEl.appendChild(review);
-            };
-
+            sBtn.onclick=()=>{stopTimer();qEl.textContent=`Section Completed. Score: ${score}/${attempted}`;oEl.innerHTML="";let review=document.createElement("div");review.className="review";let wrongHtml="<h3>Review Wrong Answers:</h3>";if(wrongs.length===0){wrongHtml+="<p>All correct 🎉</p>";}else{wrongs.forEach((w,i)=>{wrongHtml+=`<p class="review-item"><b>Q${i+1}:</b> ${w.q}<br>Your: ${w.your} | Correct: ${w.correct} | Time: ${w.time}s</p>`;});}let avgTime=(attempted>0?(totalTime/attempted):0).toFixed(2);let accuracy=(attempted>0?((score/attempted)*100):0).toFixed(2);wrongHtml+=`<div class="summary"><b>Summary:</b><br>Attempted: ${attempted}<br>Accuracy: ${accuracy}%<br>Average Time: ${avgTime}s</div>`;review.innerHTML=wrongHtml;rEl.innerHTML="";rEl.appendChild(review);};
             load();
         }
-
-
         function start(id){
-            // Hide all containers
             document.querySelectorAll('.container').forEach(c=>c.style.display='none');
-            // Hide the grid
-            document.querySelector('.section-grid').style.display = 'none';
-            // Show the selected section
-            document.getElementById(id+'Section').style.display='block';
-
-            // Start the section
-            if(id==='alpha') startSection('alpha',genAlphaQs());
-            if(id==='cube') startSection('cube',genCubeQs());
-            if(id==='square') startSection('square',genSquareQs());
-            if(id==='perc') startSection('perc',percQs);
-            if(id==='multi') startSection('multi',genMultiQs());
+            document.querySelector('.section-grid').style.display='none';
+            if(id==='alpha'){document.getElementById('alphaSection').style.display='block';startSection('alpha',genAlphaQs());}
+            if(id==='cube'){document.getElementById('cubeSection').style.display='block';startSection('cube',genCubeQs());}
+            if(id==='square'){document.getElementById('squareSection').style.display='block';startSection('square',genSquareQs());}
+            if(id==='perc'){document.getElementById('percSection').style.display='block';startSection('perc',percQs);}
+            if(id==='multi'){document.getElementById('multiSection').style.display='block';startSection('multi',genMultiQs(30));}
+            if(id==='percentNum'){document.getElementById('percentNumSection').style.display='block';startSection('percentNum',genPercentNumQs(30));}
         }
     </script>
 </body>

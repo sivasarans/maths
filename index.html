@@ -72,6 +72,36 @@
         .review{margin-top:12px;}
         .review-item{margin-bottom:8px;font-size:0.95rem;}
         .summary{margin-top:12px;font-size:0.95rem;}
+
+        .goal-link{
+      background:rgba(255,255,255,0.85);
+      backdrop-filter:blur(6px);
+      border-radius:12px;
+      padding:12px 20px;
+      text-align:center;
+      margin:20px auto;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1);
+      font-weight:600;
+    }
+    .goal-link a{
+      color:#1e3a8a;
+      text-decoration:none;
+      font-size:1rem;
+    }
+    .goal-link a:hover{
+      text-decoration:underline;
+      color:#2563eb;
+    }
+    body.dark .goal-link{
+      background:rgba(31,41,55,0.9);
+      box-shadow:0 4px 10px rgba(0,0,0,0.5);
+    }
+    body.dark .goal-link a{
+      color:#93c5fd;
+    }
+    body.dark .goal-link a:hover{
+      color:#60a5fa;
+    }
     </style>
 </head>
 <body>
@@ -144,6 +174,11 @@
             <div class="result" id="percentNumRes"></div>
             <button class="submit-btn" id="percentNumSubmit">Submit Section</button>
         </div>
+
+        <div class="goal-link">
+      🔗 Visit my goal tracker: <a href="https://sivasarans.github.io/goal/" target="_blank">https://sivasarans.github.io/goal/</a>
+    </div>
+        
     </div>
     <footer>
         Designed & Developed by <strong>S.Sivasaran</strong> — Insta:
@@ -321,3 +356,4 @@
     </script>
 </body>
 </html>
+

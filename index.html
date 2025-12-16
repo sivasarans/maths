@@ -115,6 +115,8 @@
             <button class="btn" onclick="start('perc')">Percentage to Fraction</button>
             <button class="btn" onclick="start('multi')">Speed Multiplication</button>
             <button class="btn" onclick="start('percentNum')">Percentage × Number Practice</button>
+            <button class="btn" onclick="start('report')">📘 Daily Study Report</button>
+
         </div>
         <!-- Containers for each section -->
         <div id="alphaSection" class="container">
@@ -174,6 +176,32 @@
             <div class="result" id="percentNumRes"></div>
             <button class="submit-btn" id="percentNumSubmit">Submit Section</button>
         </div>
+
+        <div id="reportSection" class="container">
+  <button class="back-btn" onclick="goBack()">&#9664; Back to Sections</button>
+  <h2>Daily Study Report</h2>
+
+  <form id="dailyForm">
+    <label>Topic</label>
+    <select name="title" required>
+      <option value="">Select Topic</option>
+      <option>Reasoning</option>
+      <option>Aptitude</option>
+      <option>CA</option>
+      <option>English</option>
+    </select>
+
+    <label>Description</label>
+    <textarea name="description" placeholder="What you studied today" required></textarea>
+
+    <label>Hours Spent</label>
+    <input type="number" name="hours" step="0.1" placeholder="Eg: 1.5" required>
+
+    <button type="submit" class="submit-btn" id="reportBtn">Save Report</button>
+    <div id="reportStatus" style="text-align:center;margin-top:10px;font-weight:600;"></div>
+  </form>
+</div>
+
 
         <div class="goal-link">
       🔗 Visit my goal tracker: <a href="https://sivasarans.github.io/goal/" target="_blank">https://sivasarans.github.io/goal/</a>
@@ -365,10 +393,58 @@
             if(id==='perc'){document.getElementById('percSection').style.display='block';startSection('perc',percQs);}
             if(id==='multi'){document.getElementById('multiSection').style.display='block';startSection('multi',genMultiQs(30));}
             if(id==='percentNum'){document.getElementById('percentNumSection').style.display='block';startSection('percentNum',genPercentNumQs(30));}
+            if(id==='report'){
+  document.getElementById('reportSection').style.display='block';
+}
+
         }
+
+        // Handle report form submission
+const reportForm = document.getElementById("dailyForm");
+const reportBtn = document.getElementById("reportBtn");
+const reportStatus = document.getElementById("reportStatus");
+
+if (reportForm) {
+  reportForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    reportBtn.disabled = true;
+    reportBtn.innerText = "Saving...";
+    reportStatus.textContent = "📤 Saving report...";
+    reportStatus.style.color = "#374151";
+
+    const formData = new FormData(reportForm);
+
+    fetch("https://script.google.com/macros/s/AKfycbzqlw1SWcLEvhDYXxua-Qr6s3vW5qA5p0T63gSIh5vzC1sCXeA0sB274TjMaJNhFOnXSA/exec", {
+      method: "POST",
+      body: formData
+    })
+    .then(res => res.text())
+    .then(text => {
+      if (text === "SUCCESS") {
+        reportStatus.textContent = "✅ Saved successfully";
+        reportStatus.style.color = "#059669";
+        reportForm.reset();
+      } else {
+        reportStatus.textContent = text;
+        reportStatus.style.color = "#dc2626";
+      }
+    })
+    .catch(() => {
+      reportStatus.textContent = "❌ Network error";
+      reportStatus.style.color = "#dc2626";
+    })
+    .finally(() => {
+      reportBtn.disabled = false;
+      reportBtn.innerText = "Save Report";
+    });
+  });
+}
+
     </script>
 </body>
 </html>
+
 
 
 

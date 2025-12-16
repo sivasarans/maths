@@ -102,6 +102,128 @@
     body.dark .goal-link a:hover{
       color:#60a5fa;
     }
+
+
+        /* ===============================
+   DAILY STUDY REPORT – FORM UI
+   =============================== */
+
+#reportSection form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+/* Labels */
+#reportSection label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+body.dark #reportSection label {
+  color: #d1d5db;
+}
+
+/* Inputs & Select */
+#reportSection select,
+#reportSection textarea,
+#reportSection input {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 0.95rem;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+/* Focus effect */
+#reportSection select:focus,
+#reportSection textarea:focus,
+#reportSection input:focus {
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59,130,246,0.25);
+}
+
+/* Dark mode inputs */
+body.dark #reportSection select,
+body.dark #reportSection textarea,
+body.dark #reportSection input {
+  background: #1f2937;
+  border-color: #374151;
+  color: #f9fafb;
+}
+
+/* Textarea size */
+#reportSection textarea {
+  resize: none;
+  min-height: 110px;
+}
+
+/* Submit button */
+#reportSection .submit-btn {
+  margin-top: 10px;
+  width: 100%;
+  background: linear-gradient(135deg,#10b981,#059669);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 14px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+#reportSection .submit-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(16,185,129,0.35);
+}
+
+/* Disabled state */
+#reportSection .submit-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Status text */
+#reportStatus {
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 6px;
+}
+
+/* ===============================
+   MOBILE OPTIMIZATION
+   =============================== */
+@media (max-width: 480px) {
+  #reportSection {
+    padding: 20px;
+  }
+
+  #reportSection h2 {
+    font-size: 1.4rem;
+  }
+
+  #reportSection select,
+  #reportSection textarea,
+  #reportSection input {
+    padding: 12px 14px;
+    font-size: 0.9rem;
+  }
+
+  #reportSection .submit-btn {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+}
+
     </style>
 </head>
 <body>
@@ -444,6 +566,7 @@ if (reportForm) {
     </script>
 </body>
 </html>
+
 
 
 

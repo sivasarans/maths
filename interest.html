@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Interest (SI & CI) – Banking Exam Practice</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+html,body{overflow-x:hidden}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f172a,#111827);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:16px;
+    color:#e5e7eb;
+}
+
+.app{
+    width:100%;
+    max-width:950px;
+    background:#020617;
+    border-radius:20px;
+    padding:18px;
+    box-shadow:0 18px 45px rgba(0,0,0,.75);
+}
+
+/* HEADER */
+.title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+h1{font-size:1.4rem;font-weight:700}
+.badge{
+    font-size:.7rem;
+    padding:4px 10px;
+    border-radius:999px;
+    border:1px solid rgba(148,163,184,.7);
+    text-transform:uppercase;
+}
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:6px;
+}
+.tag{
+    font-size:.72rem;
+    padding:4px 10px;
+    border-radius:999px;
+    background:#020617;
+    border:1px solid rgba(59,130,246,.5);
+    color:#9ca3af;
+}
+
+/* FORMULA SECTION */
+.formula-box{
+    margin-top:12px;
+    background:#020617;
+    border-radius:16px;
+    padding:14px;
+    border:1px solid rgba(148,163,184,.35);
+}
+.formula-title{
+    font-size:.75rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:#a5b4fc;
+    margin:8px 0;
+}
+.formula-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:6px;
+    font-size:.82rem;
+}
+@media(min-width:640px){
+    .formula-grid{grid-template-columns:repeat(2,1fr)}
+}
+.formula-line{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+}
+.label{color:#9ca3af}
+.value{font-weight:600}
+
+.why-box{
+    margin-top:10px;
+    font-size:.78rem;
+    line-height:1.45;
+    color:#cbd5f5;
+    border-left:3px solid #38bdf8;
+    padding-left:10px;
+}
+
+/* IMAGE */
+img{
+    max-width:100%;
+    height:auto;
+    border-radius:14px;
+    border:1px solid rgba(148,163,184,.4);
+}
+
+/* QUESTIONS */
+.questions{
+    margin-top:16px;
+    max-height:60vh;
+    overflow:auto;
+    padding-right:6px;
+    scroll-behavior:smooth;
+}
+.q-card{
+    background:#020617;
+    border:1px solid rgba(31,41,55,.9);
+    border-radius:14px;
+    padding:10px;
+    margin-bottom:10px;
+}
+.q-card.correct{border-color:#22c55e}
+.q-card.wrong{border-color:#ef4444}
+
+.q-head{
+    display:flex;
+    justify-content:space-between;
+    font-size:.75rem;
+    color:#9ca3af;
+}
+.q-text{
+    margin-top:6px;
+    font-size:.88rem;
+}
+.options{
+    margin-top:8px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:6px;
+}
+@media(min-width:640px){
+    .options{grid-template-columns:repeat(2,1fr)}
+}
+.opt{
+    display:flex;
+    gap:8px;
+    padding:8px 14px;
+    border-radius:999px;
+    border:1px solid rgba(55,65,81,.9);
+    background:rgba(15,23,42,.9);
+    cursor:pointer;
+    font-size:.82rem;
+}
+.opt:hover{border-color:#38bdf8}
+.opt input{transform:scale(1.1)}
+
+.explain{
+    display:none;
+    margin-top:6px;
+    font-size:.76rem;
+    color:#9ca3af;
+}
+.explain.show{display:block}
+
+/* FOOTER */
+.footer{
+    margin-top:12px;
+    padding-top:10px;
+    border-top:1px dashed rgba(55,65,81,.8);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+}
+.btn{
+    border:none;
+    border-radius:999px;
+    padding:8px 18px;
+    cursor:pointer;
+    font-size:.85rem;
+}
+.primary{
+    background:linear-gradient(135deg,#0ea5e9,#2563eb);
+    color:#fff;
+}
+.secondary{
+    background:#020617;
+    color:#e5e7eb;
+    border:1px solid rgba(75,85,99,.9);
+}
+.score{
+    font-size:.8rem;
+    padding:4px 12px;
+    border-radius:999px;
+    border:1px solid rgba(75,85,99,.9);
+}
+
+/* RESPONSIVE FIXES */
+@media(max-width:520px){
+    h1{font-size:1.15rem}
+    .footer{flex-direction:column}
+    .btn{width:100%}
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<div class="title-row">
+    <h1>Simple & Compound Interest</h1>
+    <div class="badge">Bank Exam Prep</div>
+</div>
+
+<div class="tags">
+    <span class="tag">SI</span>
+    <span class="tag">CI</span>
+    <span class="tag">Tricks</span>
+    <span class="tag">Percent</span>
+</div>
+
+<!-- FORMULA BOX -->
+<div class="formula-box">
+
+<div style="text-align:center;margin-bottom:10px">
+<img src="https://drive.google.com/uc?export=view&id=1cAGhko3KJidAf1JheEsH9EYAa0mWWTrt"
+     onerror="this.style.display='none';document.getElementById('imgLink').style.display='inline-block';">
+<a id="imgLink"
+   href="https://drive.google.com/file/d/1cAGhko3KJidAf1JheEsH9EYAa0mWWTrt/view"
+   target="_blank"
+   style="display:none;color:#38bdf8;font-size:.85rem;text-decoration:underline">
+📎 View Interest Formula Image
+</a>
+</div>
+
+<div class="formula-title">A → Z Core Interest Formulas</div>
+
+<div class="formula-grid">
+<div class="formula-line"><span class="label">Simple Interest</span><span class="value">SI = (P×R×T)/100</span></div>
+<div class="formula-line"><span class="label">Amount (SI)</span><span class="value">A = P + SI</span></div>
+<div class="formula-line"><span class="label">Compound Amount</span><span class="value">A = P(1+R/100)<sup>T</sup></span></div>
+<div class="formula-line"><span class="label">Compound Interest</span><span class="value">CI = A − P</span></div>
+<div class="formula-line"><span class="label">CI − SI (2 yrs)</span><span class="value">P(R/100)²</span></div>
+<div class="formula-line"><span class="label">Successive %</span><span class="value">x + y + xy/100</span></div>
+</div>
+
+<div class="why-box">
+<b>When R not given:</b> use CI−SI formula or amount ratio.  
+<b>When T not given:</b> use A/P = (1+R/100)<sup>T</sup>
+</div>
+
+<div class="why-box">
+<b>Banking Gold:</b>  
+2 years → square of rate • SI linear • CI exponential
+</div>
+
+</div>
+
+<!-- QUESTIONS -->
+<div class="questions">
+
+<div class="q-card" data-q="q1" data-ans="b">
+<div class="q-head"><span>Q1 • SI</span><span>Basic</span></div>
+<div class="q-text">Find SI on ₹2000 at 10% for 2 years.</div>
+<div class="options">
+<label class="opt"><input type="radio" name="q1" value="a"> ₹200</label>
+<label class="opt"><input type="radio" name="q1" value="b"> ₹400</label>
+<label class="opt"><input type="radio" name="q1" value="c"> ₹440</label>
+<label class="opt"><input type="radio" name="q1" value="d"> ₹420</label>
+</div>
+<div class="explain">SI = 2000×10×2 /100</div>
+</div>
+
+<div class="q-card" data-q="q2" data-ans="a">
+<div class="q-head"><span>Q2 • Time</span><span>Concept</span></div>
+<div class="q-text">At what time SI equals principal at 10%?</div>
+<div class="options">
+<label class="opt"><input type="radio" name="q2" value="a"> 10 years</label>
+<label class="opt"><input type="radio" name="q2" value="b"> 5 years</label>
+<label class="opt"><input type="radio" name="q2" value="c"> 20 years</label>
+<label class="opt"><input type="radio" name="q2" value="d"> 8 years</label>
+</div>
+<div class="explain">100/10 = 10</div>
+</div>
+
+</div>
+
+<div class="footer">
+<div>
+<button class="btn primary" id="check">Check Answers</button>
+<button class="btn secondary" id="reset">Reset</button>
+</div>
+<div class="score" id="score">Score: 0 / 2</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+const cards=document.querySelectorAll(".q-card");
+const scoreEl=document.getElementById("score");
+
+document.getElementById("check").onclick=function(){
+let score=0;
+cards.forEach(c=>{
+const q=c.dataset.q;
+const ans=c.dataset.ans;
+const sel=document.querySelector(`input[name="${q}"]:checked`);
+c.classList.remove("correct","wrong");
+c.querySelector(".explain").classList.remove("show");
+if(!sel)return;
+if(sel.value===ans){score++;c.classList.add("correct");}
+else{c.classList.add("wrong");}
+c.querySelector(".explain").classList.add("show");
+});
+scoreEl.textContent=`Score: ${score} / ${cards.length}`;
+};
+
+document.getElementById("reset").onclick=function(){
+cards.forEach(c=>{
+const q=c.dataset.q;
+document.querySelectorAll(`input[name="${q}"]`).forEach(i=>i.checked=false);
+c.classList.remove("correct","wrong");
+c.querySelector(".explain").classList.remove("show");
+});
+scoreEl.textContent=`Score: 0 / ${cards.length}`;
+};
+})();
+</script>
+
+</body>
+</html>

@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Interest (SI & CI) – Banking Exam Practice</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<title>Interest – A to Z Banking Concepts (SI & CI)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 html,body{overflow-x:hidden}
 
 body{
-    min-height:100vh;
     background:linear-gradient(135deg,#0f172a,#111827);
+    color:#e5e7eb;
+    padding:16px;
     display:flex;
     justify-content:center;
-    align-items:center;
-    padding:16px;
-    color:#e5e7eb;
 }
 
 .app{
     width:100%;
-    max-width:950px;
+    max-width:1000px;
     background:#020617;
     border-radius:20px;
     padding:18px;
@@ -29,182 +27,60 @@ body{
 }
 
 /* HEADER */
-.title-row{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    flex-wrap:wrap;
-    gap:10px;
-}
-h1{font-size:1.4rem;font-weight:700}
-.badge{
-    font-size:.7rem;
-    padding:4px 10px;
-    border-radius:999px;
-    border:1px solid rgba(148,163,184,.7);
-    text-transform:uppercase;
-}
-.tags{
-    display:flex;
-    flex-wrap:wrap;
-    gap:6px;
-    margin-top:6px;
-}
-.tag{
-    font-size:.72rem;
-    padding:4px 10px;
-    border-radius:999px;
+h1{font-size:1.5rem;font-weight:700}
+.subtitle{font-size:.85rem;color:#9ca3af;margin-top:4px}
+
+.section{
+    margin-top:18px;
+    padding:14px;
+    border-radius:16px;
+    border:1px solid rgba(148,163,184,.35);
     background:#020617;
-    border:1px solid rgba(59,130,246,.5);
-    color:#9ca3af;
 }
 
-/* FORMULA SECTION */
-.formula-box{
-    margin-top:12px;
-    background:#020617;
-    border-radius:16px;
-    padding:14px;
-    border:1px solid rgba(148,163,184,.35);
-}
-.formula-title{
-    font-size:.75rem;
-    font-weight:600;
+.section-title{
+    font-size:.8rem;
+    letter-spacing:.15em;
     text-transform:uppercase;
-    letter-spacing:.12em;
     color:#a5b4fc;
-    margin:8px 0;
+    margin-bottom:8px;
 }
-.formula-grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:6px;
-    font-size:.82rem;
-}
-@media(min-width:640px){
-    .formula-grid{grid-template-columns:repeat(2,1fr)}
-}
-.formula-line{
+
+/* FORMULAS */
+.formula{
     display:flex;
     justify-content:space-between;
-    gap:8px;
+    font-size:.9rem;
+    padding:4px 0;
 }
 .label{color:#9ca3af}
 .value{font-weight:600}
 
-.why-box{
-    margin-top:10px;
-    font-size:.78rem;
-    line-height:1.45;
+/* EXPLANATION BOX */
+.explain{
+    margin-top:8px;
+    font-size:.85rem;
+    line-height:1.5;
     color:#cbd5f5;
     border-left:3px solid #38bdf8;
     padding-left:10px;
 }
 
-/* IMAGE */
-img{
-    max-width:100%;
-    height:auto;
-    border-radius:14px;
-    border:1px solid rgba(148,163,184,.4);
-}
-
-/* QUESTIONS */
-.questions{
-    margin-top:16px;
-    max-height:60vh;
-    overflow:auto;
-    padding-right:6px;
-    scroll-behavior:smooth;
-}
-.q-card{
-    background:#020617;
-    border:1px solid rgba(31,41,55,.9);
-    border-radius:14px;
+/* EXAMPLES */
+.example{
+    margin-top:10px;
     padding:10px;
-    margin-bottom:10px;
+    border-radius:12px;
+    background:rgba(15,23,42,.8);
+    border:1px solid rgba(55,65,81,.8);
 }
-.q-card.correct{border-color:#22c55e}
-.q-card.wrong{border-color:#ef4444}
+.example b{color:#e0e7ff}
 
-.q-head{
-    display:flex;
-    justify-content:space-between;
-    font-size:.75rem;
-    color:#9ca3af;
-}
-.q-text{
-    margin-top:6px;
-    font-size:.88rem;
-}
-.options{
-    margin-top:8px;
-    display:grid;
-    grid-template-columns:1fr;
-    gap:6px;
-}
-@media(min-width:640px){
-    .options{grid-template-columns:repeat(2,1fr)}
-}
-.opt{
-    display:flex;
-    gap:8px;
-    padding:8px 14px;
-    border-radius:999px;
-    border:1px solid rgba(55,65,81,.9);
-    background:rgba(15,23,42,.9);
-    cursor:pointer;
-    font-size:.82rem;
-}
-.opt:hover{border-color:#38bdf8}
-.opt input{transform:scale(1.1)}
-
-.explain{
-    display:none;
-    margin-top:6px;
-    font-size:.76rem;
-    color:#9ca3af;
-}
-.explain.show{display:block}
-
-/* FOOTER */
-.footer{
-    margin-top:12px;
-    padding-top:10px;
-    border-top:1px dashed rgba(55,65,81,.8);
-    display:flex;
-    justify-content:space-between;
-    flex-wrap:wrap;
-    gap:10px;
-}
-.btn{
-    border:none;
-    border-radius:999px;
-    padding:8px 18px;
-    cursor:pointer;
-    font-size:.85rem;
-}
-.primary{
-    background:linear-gradient(135deg,#0ea5e9,#2563eb);
-    color:#fff;
-}
-.secondary{
-    background:#020617;
-    color:#e5e7eb;
-    border:1px solid rgba(75,85,99,.9);
-}
-.score{
-    font-size:.8rem;
-    padding:4px 12px;
-    border-radius:999px;
-    border:1px solid rgba(75,85,99,.9);
-}
-
-/* RESPONSIVE FIXES */
-@media(max-width:520px){
-    h1{font-size:1.15rem}
-    .footer{flex-direction:column}
-    .btn{width:100%}
+/* RESPONSIVE */
+@media(max-width:600px){
+    h1{font-size:1.25rem}
+    .formula{font-size:.85rem}
+    .explain,.example{font-size:.82rem}
 }
 </style>
 </head>
@@ -212,126 +88,170 @@ img{
 <body>
 <div class="app">
 
-<div class="title-row">
-    <h1>Simple & Compound Interest</h1>
-    <div class="badge">Bank Exam Prep</div>
+<h1>INTEREST – A TO Z (SI & CI)</h1>
+<div class="subtitle">All banking exam scenarios • Formulas • Approach • Solved logic</div>
+
+<!-- SECTION 1 -->
+<div class="section">
+<div class="section-title">1. SIMPLE INTEREST – CORE</div>
+
+<div class="formula"><span class="label">Simple Interest</span><span class="value">SI = (P × R × T) / 100</span></div>
+<div class="formula"><span class="label">Amount</span><span class="value">A = P + SI</span></div>
+
+<div class="explain">
+<b>Approach:</b><br>
+Use SI when interest is calculated only on principal (linear growth).
 </div>
 
-<div class="tags">
-    <span class="tag">SI</span>
-    <span class="tag">CI</span>
-    <span class="tag">Tricks</span>
-    <span class="tag">Percent</span>
+<div class="example">
+<b>Example 1:</b><br>
+P = ₹4000, R = 5%, T = 3 years<br>
+SI = 4000×5×3/100 = ₹600
+</div>
 </div>
 
-<!-- FORMULA BOX -->
-<div class="formula-box">
+<!-- SECTION 2 -->
+<div class="section">
+<div class="section-title">2. WHEN RATE (R) IS NOT GIVEN</div>
 
-<div style="text-align:center;margin-bottom:10px">
-<img src="https://drive.google.com/uc?export=view&id=1cAGhko3KJidAf1JheEsH9EYAa0mWWTrt"
-     onerror="this.style.display='none';document.getElementById('imgLink').style.display='inline-block';">
-<a id="imgLink"
-   href="https://drive.google.com/file/d/1cAGhko3KJidAf1JheEsH9EYAa0mWWTrt/view"
-   target="_blank"
-   style="display:none;color:#38bdf8;font-size:.85rem;text-decoration:underline">
-📎 View Interest Formula Image
-</a>
+<div class="formula"><span class="label">From CI − SI (2 yrs)</span><span class="value">CI−SI = P(R/100)²</span></div>
+
+<div class="explain">
+<b>Approach:</b><br>
+If difference between CI and SI for 2 years is given → rate is hidden inside square.
 </div>
 
-<div class="formula-title">A → Z Core Interest Formulas</div>
-
-<div class="formula-grid">
-<div class="formula-line"><span class="label">Simple Interest</span><span class="value">SI = (P×R×T)/100</span></div>
-<div class="formula-line"><span class="label">Amount (SI)</span><span class="value">A = P + SI</span></div>
-<div class="formula-line"><span class="label">Compound Amount</span><span class="value">A = P(1+R/100)<sup>T</sup></span></div>
-<div class="formula-line"><span class="label">Compound Interest</span><span class="value">CI = A − P</span></div>
-<div class="formula-line"><span class="label">CI − SI (2 yrs)</span><span class="value">P(R/100)²</span></div>
-<div class="formula-line"><span class="label">Successive %</span><span class="value">x + y + xy/100</span></div>
+<div class="example">
+<b>Example 2:</b><br>
+P = ₹2500, CI−SI = ₹25 (2 years)<br>
+25 = 2500(R/100)² → R² = 1 → R = 10%
+</div>
 </div>
 
-<div class="why-box">
-<b>When R not given:</b> use CI−SI formula or amount ratio.  
-<b>When T not given:</b> use A/P = (1+R/100)<sup>T</sup>
+<!-- SECTION 3 -->
+<div class="section">
+<div class="section-title">3. WHEN TIME (T) IS NOT GIVEN</div>
+
+<div class="formula"><span class="label">Amount Ratio</span><span class="value">A / P = (1+R/100)ᵀ</span></div>
+
+<div class="explain">
+<b>Approach:</b><br>
+Convert problem into base ratio, then identify power.
 </div>
 
-<div class="why-box">
-<b>Banking Gold:</b>  
-2 years → square of rate • SI linear • CI exponential
+<div class="example">
+<b>Example 3:</b><br>
+Amount becomes double at 10% CI.<br>
+2 = (1.1)ᵀ → T ≈ 7 years
+</div>
+</div>
+
+<!-- SECTION 4 -->
+<div class="section">
+<div class="section-title">4. CI – CORE</div>
+
+<div class="formula"><span class="label">Compound Amount</span><span class="value">A = P(1+R/100)ᵀ</span></div>
+<div class="formula"><span class="label">Compound Interest</span><span class="value">CI = A − P</span></div>
+
+<div class="example">
+<b>Example 4:</b><br>
+P = 1000, R = 10%, T = 2<br>
+A = 1000×1.21 = 1210 → CI = 210
+</div>
+</div>
+
+<!-- SECTION 5 -->
+<div class="section">
+<div class="section-title">5. CI − SI SHORTCUT (VERY IMPORTANT)</div>
+
+<div class="formula"><span class="label">For 2 years</span><span class="value">CI − SI = P(R/100)²</span></div>
+
+<div class="example">
+<b>Example 5:</b><br>
+P = 5000, R = 8%<br>
+Difference = 5000×(8/100)² = ₹32
+</div>
+</div>
+
+<!-- SECTION 6 -->
+<div class="section">
+<div class="section-title">6. FRACTIONAL YEARS</div>
+
+<div class="formula"><span class="label">2½ years</span><span class="value">(1+R/100)² × (1+R/200)</span></div>
+
+<div class="example">
+<b>Example 6:</b><br>
+P = 2000, R = 10%, T = 2½<br>
+A = 2000×1.21×1.05
+</div>
+</div>
+
+<!-- SECTION 7 -->
+<div class="section">
+<div class="section-title">7. HALF / QUARTERLY COMPOUNDING</div>
+
+<div class="formula"><span class="label">Half-yearly</span><span class="value">(1+R/200)²ᵀ</span></div>
+<div class="formula"><span class="label">Quarterly</span><span class="value">(1+R/400)⁴ᵀ</span></div>
+
+<div class="example">
+<b>Example 7:</b><br>
+10% p.a. half-yearly → 5% for 2 periods/year
+</div>
+</div>
+
+<!-- SECTION 8 -->
+<div class="section">
+<div class="section-title">8. SUCCESSIVE INCREASE / DECREASE</div>
+
+<div class="formula"><span class="label">Net % change</span><span class="value">x + y + xy/100</span></div>
+
+<div class="example">
+<b>Example 8:</b><br>
+Increase 20%, then 10%<br>
+Net = 20+10+2 = 32%
+</div>
+</div>
+
+<!-- SECTION 9 -->
+<div class="section">
+<div class="section-title">9. SI = CI CONDITION</div>
+
+<div class="explain">
+<b>Rule:</b><br>
+SI = CI only for <b>1 year</b> (always).
+</div>
+
+<div class="example">
+<b>Example 9:</b><br>
+At any rate, for 1 year → SI = CI
+</div>
+</div>
+
+<!-- SECTION 10 -->
+<div class="section">
+<div class="section-title">10. FIND TIME WHEN SI = PRINCIPAL</div>
+
+<div class="formula"><span class="label">Time</span><span class="value">T = 100 / R</span></div>
+
+<div class="example">
+<b>Example 10:</b><br>
+R = 8% → T = 12.5 years
+</div>
+</div>
+
+<!-- FINAL -->
+<div class="section">
+<div class="section-title">BANKING GOLD SUMMARY</div>
+
+<div class="explain">
+✔ If CI−SI given → think square of rate<br>
+✔ If double/triple amount → use ratio power<br>
+✔ Fraction years → split year<br>
+✔ Half/quarter → rate ÷ periods, time × periods<br>
+✔ Never blindly apply formula – identify missing value first
+</div>
 </div>
 
 </div>
-
-<!-- QUESTIONS -->
-<div class="questions">
-
-<div class="q-card" data-q="q1" data-ans="b">
-<div class="q-head"><span>Q1 • SI</span><span>Basic</span></div>
-<div class="q-text">Find SI on ₹2000 at 10% for 2 years.</div>
-<div class="options">
-<label class="opt"><input type="radio" name="q1" value="a"> ₹200</label>
-<label class="opt"><input type="radio" name="q1" value="b"> ₹400</label>
-<label class="opt"><input type="radio" name="q1" value="c"> ₹440</label>
-<label class="opt"><input type="radio" name="q1" value="d"> ₹420</label>
-</div>
-<div class="explain">SI = 2000×10×2 /100</div>
-</div>
-
-<div class="q-card" data-q="q2" data-ans="a">
-<div class="q-head"><span>Q2 • Time</span><span>Concept</span></div>
-<div class="q-text">At what time SI equals principal at 10%?</div>
-<div class="options">
-<label class="opt"><input type="radio" name="q2" value="a"> 10 years</label>
-<label class="opt"><input type="radio" name="q2" value="b"> 5 years</label>
-<label class="opt"><input type="radio" name="q2" value="c"> 20 years</label>
-<label class="opt"><input type="radio" name="q2" value="d"> 8 years</label>
-</div>
-<div class="explain">100/10 = 10</div>
-</div>
-
-</div>
-
-<div class="footer">
-<div>
-<button class="btn primary" id="check">Check Answers</button>
-<button class="btn secondary" id="reset">Reset</button>
-</div>
-<div class="score" id="score">Score: 0 / 2</div>
-</div>
-
-</div>
-
-<script>
-(function(){
-const cards=document.querySelectorAll(".q-card");
-const scoreEl=document.getElementById("score");
-
-document.getElementById("check").onclick=function(){
-let score=0;
-cards.forEach(c=>{
-const q=c.dataset.q;
-const ans=c.dataset.ans;
-const sel=document.querySelector(`input[name="${q}"]:checked`);
-c.classList.remove("correct","wrong");
-c.querySelector(".explain").classList.remove("show");
-if(!sel)return;
-if(sel.value===ans){score++;c.classList.add("correct");}
-else{c.classList.add("wrong");}
-c.querySelector(".explain").classList.add("show");
-});
-scoreEl.textContent=`Score: ${score} / ${cards.length}`;
-};
-
-document.getElementById("reset").onclick=function(){
-cards.forEach(c=>{
-const q=c.dataset.q;
-document.querySelectorAll(`input[name="${q}"]`).forEach(i=>i.checked=false);
-c.classList.remove("correct","wrong");
-c.querySelector(".explain").classList.remove("show");
-});
-scoreEl.textContent=`Score: 0 / ${cards.length}`;
-};
-})();
-</script>
-
 </body>
 </html>

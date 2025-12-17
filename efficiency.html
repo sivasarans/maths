@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Time, Work & Efficiency – Banking Exam Practice</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+
+        body{
+            min-height:100vh;
+            background:linear-gradient(135deg,#0f172a,#111827);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:16px;
+            color:#e5e7eb;
+        }
+
+        .app{
+            width:100%;
+            max-width:950px;
+            background:#020617;
+            border-radius:20px;
+            padding:18px;
+            box-shadow:0 18px 45px rgba(0,0,0,.75);
+        }
+
+        .header{
+            display:flex;
+            flex-direction:column;
+            gap:8px;
+        }
+
+        .title-row{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        h1{
+            font-size:1.4rem;
+            font-weight:700;
+            letter-spacing:.02em;
+        }
+
+        .badge{
+            font-size:.7rem;
+            padding:4px 10px;
+            border-radius:999px;
+            border:1px solid rgba(148,163,184,.7);
+            text-transform:uppercase;
+            letter-spacing:.1em;
+        }
+
+        .tags{
+            display:flex;
+            flex-wrap:wrap;
+            gap:6px;
+        }
+
+        .tag{
+            font-size:.72rem;
+            padding:4px 10px;
+            border-radius:999px;
+            background:rgba(15,23,42,.9);
+            border:1px solid rgba(59,130,246,.5);
+            color:#9ca3af;
+        }
+
+        .formula-box{
+            margin-top:12px;
+            background:radial-gradient(circle at top left,rgba(56,189,248,.3),transparent 55%),
+                       radial-gradient(circle at bottom right,rgba(59,130,246,.3),transparent 55%),
+                       #020617;
+            border-radius:16px;
+            padding:12px;
+            border:1px solid rgba(148,163,184,.35);
+        }
+
+        .formula-title{
+            font-size:.75rem;
+            font-weight:600;
+            text-transform:uppercase;
+            letter-spacing:.12em;
+            color:#a5b4fc;
+            margin-bottom:6px;
+        }
+
+        .formula-grid{
+            display:grid;
+            grid-template-columns:1fr;
+            gap:6px;
+            font-size:.82rem;
+        }
+
+        @media(min-width:640px){
+            .formula-grid{grid-template-columns:repeat(2,1fr)}
+        }
+
+        .formula-line{
+            display:flex;
+            justify-content:space-between;
+            gap:6px;
+        }
+
+        .label{color:#9ca3af}
+        .value{font-weight:600}
+
+        .why-box{
+            margin-top:10px;
+            font-size:.78rem;
+            line-height:1.45;
+            color:#cbd5f5;
+            border-left:3px solid #38bdf8;
+            padding-left:10px;
+        }
+
+        .questions{
+            margin-top:16px;
+            max-height:60vh;
+            overflow:auto;
+            padding-right:6px;
+        }
+
+        .q-card{
+            background:#020617;
+            border:1px solid rgba(31,41,55,.9);
+            border-radius:14px;
+            padding:10px;
+            margin-bottom:10px;
+        }
+
+        .q-card.correct{
+            border-color:#22c55e;
+            background:radial-gradient(circle at top left,rgba(34,197,94,.15),transparent 60%),#020617;
+        }
+
+        .q-card.wrong{
+            border-color:#ef4444;
+            background:radial-gradient(circle at top left,rgba(239,68,68,.15),transparent 60%),#020617;
+        }
+
+        .q-head{
+            display:flex;
+            justify-content:space-between;
+            font-size:.75rem;
+            color:#9ca3af;
+        }
+
+        .q-text{
+            margin-top:6px;
+            font-size:.88rem;
+        }
+
+        .options{
+            margin-top:8px;
+            display:grid;
+            grid-template-columns:1fr;
+            gap:6px;
+        }
+
+        @media(min-width:640px){
+            .options{grid-template-columns:repeat(2,1fr)}
+        }
+
+        .opt{
+            display:flex;
+            gap:6px;
+            padding:6px 10px;
+            border-radius:999px;
+            border:1px solid rgba(55,65,81,.9);
+            background:rgba(15,23,42,.9);
+            cursor:pointer;
+            font-size:.82rem;
+        }
+
+        .opt:hover{
+            border-color:#38bdf8;
+            background:rgba(30,64,175,.5);
+        }
+
+        .explain{
+            display:none;
+            margin-top:6px;
+            font-size:.76rem;
+            color:#9ca3af;
+        }
+
+        .explain.show{display:block}
+
+        .footer{
+            margin-top:12px;
+            padding-top:10px;
+            border-top:1px dashed rgba(55,65,81,.8);
+            display:flex;
+            justify-content:space-between;
+            flex-wrap:wrap;
+            gap:10px;
+        }
+
+        .btn{
+            border:none;
+            border-radius:999px;
+            padding:7px 16px;
+            cursor:pointer;
+            font-size:.85rem;
+        }
+
+        .primary{
+            background:linear-gradient(135deg,#0ea5e9,#2563eb);
+            color:#fff;
+            box-shadow:0 10px 25px rgba(37,99,235,.6);
+        }
+
+        .secondary{
+            background:#020617;
+            color:#e5e7eb;
+            border:1px solid rgba(75,85,99,.9);
+        }
+
+        .score{
+            font-size:.8rem;
+            padding:4px 12px;
+            border-radius:999px;
+            border:1px solid rgba(75,85,99,.9);
+        }
+    </style>
+</head>
+<body>
+
+<div class="app">
+    <div class="header">
+        <div class="title-row">
+            <h1>Time, Work & Efficiency</h1>
+            <div class="badge">Bank Exam Prep</div>
+        </div>
+
+        <div class="tags">
+            <span class="tag">Time & Work</span>
+            <span class="tag">Efficiency</span>
+            <span class="tag">Ratio Method</span>
+            <span class="tag">LCM Method</span>
+        </div>
+
+        <!-- FORMULAS -->
+        <div class="formula-box">
+            <div class="formula-title">Core Formulas</div>
+            <div class="formula-grid">
+                <div class="formula-line"><span class="label">Work (W)</span><span class="value">W = E × T</span></div>
+                <div class="formula-line"><span class="label">Efficiency (E)</span><span class="value">E = W ÷ T</span></div>
+                <div class="formula-line"><span class="label">Time (T)</span><span class="value">T = W ÷ E</span></div>
+                <div class="formula-line"><span class="label">Efficiency of A (x days)</span><span class="value">1 / x</span></div>
+                <div class="formula-line"><span class="label">A+B Time</span><span class="value">1 / (1/x + 1/y)</span></div>
+                <div class="formula-line"><span class="label">Efficiency ↑ k%</span><span class="value">Time ↓ k/(100+k)</span></div>
+            </div>
+
+            <div class="why-box">
+                <b>WHY it works:</b><br>
+                Efficiency means work per day.  
+                If a person finishes work in 10 days, he completes <b>1/10</b> work daily.  
+                More efficiency → less time. Time and efficiency are always inversely proportional.
+            </div>
+            
+            
+                        <div class="why-box">
+                <b>Simple Remember Tips:</b><br>
+                Efficiency means <b>Speed</b>.  <br>
+                Work means <b>Distance</b>  
+            </div>
+        </div>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div class="questions">
+
+<!-- Q1 BASIC FORMULA -->
+<div class="q-card" data-q="q1" data-ans="c">
+  <div class="q-head"><span>Q1 • Basic Formula</span><span>Concept</span></div>
+  <div class="q-text">If efficiency is 1/10 work per day, how much work is done in 4 days?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q1" value="a"> 1/10</label>
+    <label class="opt"><input type="radio" name="q1" value="b"> 1/5</label>
+    <label class="opt"><input type="radio" name="q1" value="c"> 2/5</label>
+    <label class="opt"><input type="radio" name="q1" value="d"> 4/10</label>
+  </div>
+  <div class="explain">Work = Efficiency × Time = (1/10) × 4 = 2/5</div>
+</div>
+
+<!-- Q2 FIND EFFICIENCY -->
+<div class="q-card" data-q="q2" data-ans="b">
+  <div class="q-head"><span>Q2 • Find Efficiency</span><span>Basic</span></div>
+  <div class="q-text">A completes a work in 8 days. What is his efficiency?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q2" value="a"> 8</label>
+    <label class="opt"><input type="radio" name="q2" value="b"> 1/8</label>
+    <label class="opt"><input type="radio" name="q2" value="c"> 1/4</label>
+    <label class="opt"><input type="radio" name="q2" value="d"> 2</label>
+  </div>
+  <div class="explain">Efficiency = 1 / Time = 1/8</div>
+</div>
+
+<!-- Q3 FIND TIME -->
+<div class="q-card" data-q="q3" data-ans="d">
+  <div class="q-head"><span>Q3 • Find Time</span><span>Concept</span></div>
+  <div class="q-text">Efficiency of A is 1/5. How many days will A take to complete the work?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q3" value="a"> 1 day</label>
+    <label class="opt"><input type="radio" name="q3" value="b"> 10 days</label>
+    <label class="opt"><input type="radio" name="q3" value="c"> 25 days</label>
+    <label class="opt"><input type="radio" name="q3" value="d"> 5 days</label>
+  </div>
+  <div class="explain">Time = 1 ÷ (1/5) = 5 days</div>
+</div>
+
+<!-- Q4 A+B -->
+<div class="q-card" data-q="q4" data-ans="a">
+  <div class="q-head"><span>Q4 • Combined Work</span><span>Application</span></div>
+  <div class="q-text">A can do work in 10 days and B in 15 days. How long will they take together?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q4" value="a"> 6 days</label>
+    <label class="opt"><input type="radio" name="q4" value="b"> 12 days</label>
+    <label class="opt"><input type="radio" name="q4" value="c"> 25 days</label>
+    <label class="opt"><input type="radio" name="q4" value="d"> 5 days</label>
+  </div>
+  <div class="explain">1/10 + 1/15 = 1/6 → Time = 6 days</div>
+</div>
+
+<!-- Q5 A+B+C -->
+<div class="q-card" data-q="q5" data-ans="b">
+  <div class="q-head"><span>Q5 • A+B+C</span><span>Advanced</span></div>
+  <div class="q-text">A, B, C can complete a work in 6, 12, 4 days respectively. Together they take?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q5" value="a"> 3 days</label>
+    <label class="opt"><input type="radio" name="q5" value="b"> 2 days</label>
+    <label class="opt"><input type="radio" name="q5" value="c"> 6 days</label>
+    <label class="opt"><input type="radio" name="q5" value="d"> 4 days</label>
+  </div>
+  <div class="explain">1/6+1/12+1/4 = 1/2 → Time = 2 days</div>
+</div>
+
+<!-- Q6 FIND INDIVIDUAL -->
+<div class="q-card" data-q="q6" data-ans="c">
+  <div class="q-head"><span>Q6 • Find Individual</span><span>Tricky</span></div>
+  <div class="q-text">A and B together take 6 days. A alone takes 10 days. B alone takes?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q6" value="a"> 12 days</label>
+    <label class="opt"><input type="radio" name="q6" value="b"> 20 days</label>
+    <label class="opt"><input type="radio" name="q6" value="c"> 15 days</label>
+    <label class="opt"><input type="radio" name="q6" value="d"> 30 days</label>
+  </div>
+  <div class="explain">B = 1/6 − 1/10 = 1/15 → 15 days</div>
+</div>
+
+<!-- Q7 RATIO -->
+<div class="q-card" data-q="q7" data-ans="a">
+  <div class="q-head"><span>Q7 • Ratio Method</span><span>Fast</span></div>
+  <div class="q-text">Efficiency ratio of A:B is 2:3. Time ratio is?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q7" value="a"> 3 : 2</label>
+    <label class="opt"><input type="radio" name="q7" value="b"> 2 : 3</label>
+    <label class="opt"><input type="radio" name="q7" value="c"> 5 : 6</label>
+    <label class="opt"><input type="radio" name="q7" value="d"> 6 : 5</label>
+  </div>
+  <div class="explain">Time ratio is inverse of efficiency</div>
+</div>
+
+<!-- Q8 LCM -->
+<div class="q-card" data-q="q8" data-ans="d">
+  <div class="q-head"><span>Q8 • LCM Method</span><span>Safe</span></div>
+  <div class="q-text">A and B take 12 and 18 days. Using LCM, total work is?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q8" value="a"> 24</label>
+    <label class="opt"><input type="radio" name="q8" value="b"> 12</label>
+    <label class="opt"><input type="radio" name="q8" value="c"> 18</label>
+    <label class="opt"><input type="radio" name="q8" value="d"> 36</label>
+  </div>
+  <div class="explain">LCM(12,18) = 36 units</div>
+</div>
+
+<!-- Q9 PARTIAL -->
+<div class="q-card" data-q="q9" data-ans="b">
+  <div class="q-head"><span>Q9 • Partial Work</span><span>Application</span></div>
+  <div class="q-text">A does work in 10 days, B in 20 days. A works 4 days, B 2 days. Work done?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q9" value="a"> 3/10</label>
+    <label class="opt"><input type="radio" name="q9" value="b"> 1/2</label>
+    <label class="opt"><input type="radio" name="q9" value="c"> 2/5</label>
+    <label class="opt"><input type="radio" name="q9" value="d"> 1/4</label>
+  </div>
+  <div class="explain">2/5 + 1/10 = 1/2</div>
+</div>
+
+<!-- Q10 EFF ↑ -->
+<div class="q-card" data-q="q10" data-ans="a">
+  <div class="q-head"><span>Q10 • Efficiency Increase</span><span>Percent</span></div>
+  <div class="q-text">Efficiency increases by 25%. Time will decrease by?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q10" value="a"> 20%</label>
+    <label class="opt"><input type="radio" name="q10" value="b"> 25%</label>
+    <label class="opt"><input type="radio" name="q10" value="c"> 30%</label>
+    <label class="opt"><input type="radio" name="q10" value="d"> 15%</label>
+  </div>
+  <div class="explain">25/(100+25) ×100 = 20%</div>
+</div>
+
+<!-- Q11 MEN DAYS -->
+<div class="q-card" data-q="q11" data-ans="c">
+  <div class="q-head"><span>Q11 • Men Days Hours</span><span>Standard</span></div>
+  <div class="q-text">10 men work 8 days, 6 hrs/day. How many days for 20 men at 6 hrs/day?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q11" value="a"> 2</label>
+    <label class="opt"><input type="radio" name="q11" value="b"> 8</label>
+    <label class="opt"><input type="radio" name="q11" value="c"> 4</label>
+    <label class="opt"><input type="radio" name="q11" value="d"> 6</label>
+  </div>
+  <div class="explain">10×8×6 = 20×D×6 → D=4</div>
+</div>
+
+<!-- Q12 ALTERNATE -->
+<div class="q-card" data-q="q12" data-ans="d">
+  <div class="q-head"><span>Q12 • Alternate Days</span><span>Tricky</span></div>
+  <div class="q-text">A works alternate days with B. A=10 days, B=20 days. Remaining work after 6 days?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q12" value="a"> 9/20</label>
+    <label class="opt"><input type="radio" name="q12" value="b"> 3/20</label>
+    <label class="opt"><input type="radio" name="q12" value="c"> 1/2</label>
+    <label class="opt"><input type="radio" name="q12" value="d"> 11/20</label>
+  </div>
+  <div class="explain">Work done = 9/20 → Remaining = 11/20</div>
+</div>
+
+<!-- Q13 WAGES -->
+<div class="q-card" data-q="q13" data-ans="a">
+  <div class="q-head"><span>Q13 • Wages</span><span>Exam Gold</span></div>
+  <div class="q-text">A works 10 days, B 5 days. Efficiency A:B = 2:1. Wage ratio?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q13" value="a"> 4 : 1</label>
+    <label class="opt"><input type="radio" name="q13" value="b"> 2 : 1</label>
+    <label class="opt"><input type="radio" name="q13" value="c"> 5 : 2</label>
+    <label class="opt"><input type="radio" name="q13" value="d"> 3 : 1</label>
+  </div>
+  <div class="explain">(10×2):(5×1) = 20:5 = 4:1</div>
+</div>
+
+</div>
+
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <div>
+            <button class="btn primary" id="check">Check Answers</button>
+            <button class="btn secondary" id="reset">Reset</button>
+        </div>
+        <div class="score" id="score">Score: 0 / 4</div>
+    </div>
+</div>
+
+<script>
+(function(){
+    const cards=document.querySelectorAll(".q-card");
+    const scoreEl=document.getElementById("score");
+
+    document.getElementById("check").onclick=function(){
+        let score=0;
+        cards.forEach(c=>{
+            const q=c.dataset.q;
+            const ans=c.dataset.ans;
+            const sel=document.querySelector(`input[name="${q}"]:checked`);
+            c.classList.remove("correct","wrong");
+            c.querySelector(".explain").classList.remove("show");
+            if(!sel)return;
+            if(sel.value===ans){
+                score++;
+                c.classList.add("correct");
+            }else{
+                c.classList.add("wrong");
+            }
+            c.querySelector(".explain").classList.add("show");
+        });
+        scoreEl.textContent=`Score: ${score} / ${cards.length}`;
+    };
+
+    document.getElementById("reset").onclick=function(){
+        cards.forEach(c=>{
+            const q=c.dataset.q;
+            document.querySelectorAll(`input[name="${q}"]`).forEach(i=>i.checked=false);
+            c.classList.remove("correct","wrong");
+            c.querySelector(".explain").classList.remove("show");
+        });
+        scoreEl.textContent=`Score: 0 / ${cards.length}`;
+    };
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Mixture & Alligation – Banking Exam Practice</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f172a,#111827);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:16px;
+    color:#e5e7eb;
+}
+
+.app{
+    width:100%;
+    max-width:950px;
+    background:#020617;
+    border-radius:20px;
+    padding:18px;
+    box-shadow:0 18px 45px rgba(0,0,0,.75);
+}
+
+.header{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.title-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+h1{font-size:1.4rem;font-weight:700;letter-spacing:.02em}
+
+.badge{
+    font-size:.7rem;
+    padding:4px 10px;
+    border-radius:999px;
+    border:1px solid rgba(148,163,184,.7);
+    text-transform:uppercase;
+    letter-spacing:.1em;
+}
+
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+}
+
+.tag{
+    font-size:.72rem;
+    padding:4px 10px;
+    border-radius:999px;
+    background:rgba(15,23,42,.9);
+    border:1px solid rgba(59,130,246,.5);
+    color:#9ca3af;
+}
+
+.formula-box{
+    margin-top:12px;
+    background:radial-gradient(circle at top left,rgba(56,189,248,.3),transparent 55%),
+               radial-gradient(circle at bottom right,rgba(59,130,246,.3),transparent 55%),
+               #020617;
+    border-radius:16px;
+    padding:12px;
+    border:1px solid rgba(148,163,184,.35);
+}
+
+.formula-title{
+    font-size:.75rem;
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+    color:#a5b4fc;
+    margin-bottom:6px;
+}
+
+.formula-grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:6px;
+    font-size:.82rem;
+}
+
+@media(min-width:640px){
+    .formula-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+.formula-line{
+    display:flex;
+    justify-content:space-between;
+    gap:6px;
+}
+
+.label{color:#9ca3af}
+.value{font-weight:600}
+
+.why-box{
+    margin-top:10px;
+    font-size:.78rem;
+    line-height:1.45;
+    color:#cbd5f5;
+    border-left:3px solid #38bdf8;
+    padding-left:10px;
+}
+
+.questions{
+    margin-top:16px;
+    max-height:60vh;
+    overflow:auto;
+    padding-right:6px;
+}
+
+.q-card{
+    background:#020617;
+    border:1px solid rgba(31,41,55,.9);
+    border-radius:14px;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.q-card.correct{
+    border-color:#22c55e;
+    background:radial-gradient(circle at top left,rgba(34,197,94,.15),transparent 60%),#020617;
+}
+
+.q-card.wrong{
+    border-color:#ef4444;
+    background:radial-gradient(circle at top left,rgba(239,68,68,.15),transparent 60%),#020617;
+}
+
+.q-head{
+    display:flex;
+    justify-content:space-between;
+    font-size:.75rem;
+    color:#9ca3af;
+}
+
+.q-text{margin-top:6px;font-size:.88rem}
+
+.options{
+    margin-top:8px;
+    display:grid;
+    grid-template-columns:1fr;
+    gap:6px;
+}
+
+@media(min-width:640px){
+    .options{grid-template-columns:repeat(2,1fr)}
+}
+
+.opt{
+    display:flex;
+    gap:6px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid rgba(55,65,81,.9);
+    background:rgba(15,23,42,.9);
+    cursor:pointer;
+    font-size:.82rem;
+}
+
+.opt:hover{
+    border-color:#38bdf8;
+    background:rgba(30,64,175,.5);
+}
+
+.explain{
+    display:none;
+    margin-top:6px;
+    font-size:.76rem;
+    color:#9ca3af;
+}
+
+.explain.show{display:block}
+
+.footer{
+    margin-top:12px;
+    padding-top:10px;
+    border-top:1px dashed rgba(55,65,81,.8);
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.btn{
+    border:none;
+    border-radius:999px;
+    padding:7px 16px;
+    cursor:pointer;
+    font-size:.85rem;
+}
+
+.primary{
+    background:linear-gradient(135deg,#0ea5e9,#2563eb);
+    color:#fff;
+    box-shadow:0 10px 25px rgba(37,99,235,.6);
+}
+
+.secondary{
+    background:#020617;
+    color:#e5e7eb;
+    border:1px solid rgba(75,85,99,.9);
+}
+
+.score{
+    font-size:.8rem;
+    padding:4px 12px;
+    border-radius:999px;
+    border:1px solid rgba(75,85,99,.9);
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+<div class="header">
+
+<div class="title-row">
+    <h1>Mixture & Alligation</h1>
+    <div class="badge">Bank Exam Prep</div>
+</div>
+
+<div class="tags">
+    <span class="tag">Alligation</span>
+    <span class="tag">Replacement</span>
+    <span class="tag">Weighted Avg</span>
+    <span class="tag">Conceptual</span>
+</div>
+
+<!-- FORMULAS -->
+<div class="formula-box">
+<div class="formula-title">Core Formulas & Approaches</div>
+
+<div class="formula-grid">
+<div class="formula-line"><span class="label">Weighted Average</span><span class="value">(q1×p1 + q2×p2)/(q1+q2)</span></div>
+<div class="formula-line"><span class="label">Alligation Ratio</span><span class="value">(High − Mean):(Mean − Low)</span></div>
+<div class="formula-line"><span class="label">Replacement (Pure)</span><span class="value">Final = Initial×(1 − x/V)ⁿ</span></div>
+<div class="formula-line"><span class="label">Repeated Replacement</span><span class="value">V[1 − (1 − x/V)ⁿ]</span></div>
+<div class="formula-line"><span class="label">Cost Price Mix</span><span class="value">Alligation on prices</span></div>
+<div class="formula-line"><span class="label">Milk–Water Concept</span><span class="value">Pure quantity tracking</span></div>
+</div>
+
+<div class="why-box">
+<b>WHY Alligation Works:</b><br>
+The mean price lies between cheaper and dearer values.  
+Difference decides the quantity ratio directly.
+</div>
+
+<div class="why-box">
+<b>REMEMBER:</b><br>
+✔ Always subtract diagonally  
+✔ Ratio is inverse of difference  
+✔ Replacement → exponential decay
+</div>
+
+
+<!-- EXTRA STRENGTH THEORY -->
+<div class="why-box">
+<b>RATIO & PROPORTION (Foundation):</b><br>
+A <b>ratio</b> shows comparison between two quantities.<br>
+If quantities are x and y → Ratio = <b>x : y</b><br>
+• x = <b>Antecedent</b><br>
+• y = <b>Consequent</b><br><br>
+
+<b>Proportion</b> means two ratios are equal:<br>
+a : b :: c : d  ⇒  a/b = c/d<br>
+Example: 6 : 8 :: 3 : 4
+</div>
+
+<div class="why-box">
+<b>TYPES OF MIXTURES:</b><br>
+<b>1. Simple Mixture</b> – mixing pure items directly<br>
+Example: Milk + Water, Rice + Rice<br><br>
+
+<b>2. Complex Mixture</b> – mixing mixtures with mixtures<br>
+Example: Alloy A + Alloy B
+</div>
+
+<div class="why-box">
+<b>WHAT IS ALLIGATION?</b><br>
+Alligation is a shortcut method to find the <b>ratio</b> in which items
+must be mixed to get a desired <b>mean value</b>.<br><br>
+
+It is based on the concept of <b>Weighted Average</b>.
+</div>
+
+<div class="why-box">
+<b>WEIGHTED AVERAGE CONCEPT:</b><br>
+If quantities n₁, n₂ with values A₁, A₂ are mixed,<br>
+Average = (n₁A₁ + n₂A₂) / (n₁ + n₂)
+</div>
+
+<div class="why-box">
+<b>ALLIGATION RULE (MOST IMPORTANT):</b><br>
+Quantity of Cheaper : Quantity of Dearer =<br>
+(<b>Dearer − Mean</b>) : (<b>Mean − Cheaper</b>)<br><br>
+
+✔ Mean always lies between cheaper & dearer  
+✔ Bigger quantity is taken of the value closer to mean
+</div>
+
+<div class="why-box">
+<b>ALLIGATION TYPES:</b><br>
+<b>1. Alligation Medial</b><br>
+Used to find <b>mean value</b> when quantities are given.<br><br>
+
+<b>2. Alligation Alternate</b><br>
+Used to find <b>ratio of quantities</b> when mean is given.
+</div>
+
+<div class="why-box">
+<b>GRAPHICAL (CROSS) METHOD:</b><br>
+Cheaper —— Mean —— Dearer<br>
+Cross subtract diagonally to get ratio.<br>
+Fastest method in exams.
+</div>
+
+<div class="why-box">
+<b>IMPORTANT PROPERTIES:</b><br>
+✔ Mean value always lies between two values<br>
+✔ Quantity ∝ distance from mean<br>
+✔ Value × Quantity is additive<br>
+✔ Same logic works for cost, %, purity, strength
+</div>
+
+<div class="why-box">
+<b>REPLACEMENT CONCEPT:</b><br>
+If x is replaced from volume V, n times:<br>
+Pure left = V(1 − x/V)ⁿ<br><br>
+
+Used in Milk–Water, Petrol–Kerosene problems.
+</div>
+
+<div class="why-box">
+<b>IMPORTANT RATIO RULES (EXAM GOLD):</b><br>
+✔ Componendo: (a+b)/b = (c+d)/d<br>
+✔ Dividendo: (a−b)/b = (c−d)/d<br>
+✔ Invertendo: b/a = d/c<br>
+✔ Alternendo: a/c = b/d
+</div>
+
+<div class="why-box">
+<b>EXAM STRATEGY:</b><br>
+• If <b>mean given</b> → Alligation<br>
+• If <b>replaced repeatedly</b> → Formula<br>
+• If <b>two mixtures mixed</b> → Equalize quantity first<br>
+• If <b>selling involved</b> → Find CP of mixture first
+</div>
+
+
+</div>
+</div>
+
+<!-- QUESTIONS -->
+<!-- Q1 SIMPLE RATIO -->
+<div class="q-card" data-q="q1" data-ans="b">
+  <div class="q-head"><span>Q1 • Ratio</span><span>Foundation</span></div>
+  <div class="q-text">Milk and water are mixed in the ratio 3:2. What fraction of the mixture is milk?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q1" value="a"> 2/5</label>
+    <label class="opt"><input type="radio" name="q1" value="b"> 3/5</label>
+    <label class="opt"><input type="radio" name="q1" value="c"> 1/2</label>
+    <label class="opt"><input type="radio" name="q1" value="d"> 5/3</label>
+  </div>
+  <div class="explain">Milk part = 3 / (3+2) = 3/5</div>
+</div>
+
+<!-- Q2 WEIGHTED AVERAGE -->
+<div class="q-card" data-q="q2" data-ans="c">
+  <div class="q-head"><span>Q2 • Average</span><span>Medial</span></div>
+  <div class="q-text">4 kg sugar at ₹30/kg and 6 kg sugar at ₹50/kg are mixed. Find mean price.</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q2" value="a"> ₹38</label>
+    <label class="opt"><input type="radio" name="q2" value="b"> ₹42</label>
+    <label class="opt"><input type="radio" name="q2" value="c"> ₹42</label>
+    <label class="opt"><input type="radio" name="q2" value="d"> ₹45</label>
+  </div>
+  <div class="explain">(4×30 + 6×50) / 10 = ₹42</div>
+</div>
+
+<!-- Q3 ALLIGATION ALTERNATE -->
+<div class="q-card" data-q="q3" data-ans="a">
+  <div class="q-head"><span>Q3 • Alligation</span><span>Alternate</span></div>
+  <div class="q-text">Rice at ₹20/kg is mixed with rice at ₹40/kg to get mixture at ₹30/kg. Ratio?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q3" value="a"> 1 : 1</label>
+    <label class="opt"><input type="radio" name="q3" value="b"> 2 : 1</label>
+    <label class="opt"><input type="radio" name="q3" value="c"> 3 : 2</label>
+    <label class="opt"><input type="radio" name="q3" value="d"> 1 : 2</label>
+  </div>
+  <div class="explain">(40−30):(30−20)=10:10=1:1</div>
+</div>
+
+<!-- Q4 PERCENTAGE MIXTURE -->
+<div class="q-card" data-q="q4" data-ans="d">
+  <div class="q-head"><span>Q4 • Percentage</span><span>Concept</span></div>
+  <div class="q-text">10L of 20% alcohol mixed with 10L of 40% alcohol. Final strength?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q4" value="a"> 25%</label>
+    <label class="opt"><input type="radio" name="q4" value="b"> 28%</label>
+    <label class="opt"><input type="radio" name="q4" value="c"> 35%</label>
+    <label class="opt"><input type="radio" name="q4" value="d"> 30%</label>
+  </div>
+  <div class="explain">(10×20 + 10×40)/20 = 30%</div>
+</div>
+
+<!-- Q5 SIMPLE REPLACEMENT -->
+<div class="q-card" data-q="q5" data-ans="b">
+  <div class="q-head"><span>Q5 • Replacement</span><span>Once</span></div>
+  <div class="q-text">A vessel has 20L milk. 5L is replaced with water. Milk left?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q5" value="a"> 10L</label>
+    <label class="opt"><input type="radio" name="q5" value="b"> 15L</label>
+    <label class="opt"><input type="radio" name="q5" value="c"> 12L</label>
+    <label class="opt"><input type="radio" name="q5" value="d"> 5L</label>
+  </div>
+  <div class="explain">Milk left = 20×(1−5/20)=15L</div>
+</div>
+
+<!-- Q6 REPEATED REPLACEMENT -->
+<div class="q-card" data-q="q6" data-ans="c">
+  <div class="q-head"><span>Q6 • Replacement</span><span>Repeated</span></div>
+  <div class="q-text">20L milk, 5L replaced twice. Milk left?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q6" value="a"> 10L</label>
+    <label class="opt"><input type="radio" name="q6" value="b"> 12L</label>
+    <label class="opt"><input type="radio" name="q6" value="c"> 11.25L</label>
+    <label class="opt"><input type="radio" name="q6" value="d"> 15L</label>
+  </div>
+  <div class="explain">20×(3/4)² = 11.25L</div>
+</div>
+
+<!-- Q7 TWO MIXTURES -->
+<div class="q-card" data-q="q7" data-ans="a">
+  <div class="q-head"><span>Q7 • Complex</span><span>Mixtures</span></div>
+  <div class="q-text">Mixtures A and B contain milk & water in ratios 2:1 and 3:2. Equal quantities mixed. Final ratio?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q7" value="a"> 13 : 7</label>
+    <label class="opt"><input type="radio" name="q7" value="b"> 5 : 3</label>
+    <label class="opt"><input type="radio" name="q7" value="c"> 1 : 1</label>
+    <label class="opt"><input type="radio" name="q7" value="d"> 7 : 13</label>
+  </div>
+  <div class="explain">Milk = 2/3+3/5 = 13/15, Water = 7/15</div>
+</div>
+
+<!-- Q8 SELLING MIXTURE -->
+<div class="q-card" data-q="q8" data-ans="d">
+  <div class="q-head"><span>Q8 • Profit</span><span>Selling</span></div>
+  <div class="q-text">Sugar at ₹30 & ₹50 mixed in ratio 1:1, sold at ₹48. Profit %?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q8" value="a"> 10%</label>
+    <label class="opt"><input type="radio" name="q8" value="b"> 15%</label>
+    <label class="opt"><input type="radio" name="q8" value="c"> 18%</label>
+    <label class="opt"><input type="radio" name="q8" value="d"> 20%</label>
+  </div>
+  <div class="explain">CP=40, Profit=8 → 8/40×100=20%</div>
+</div>
+
+<!-- Q9 PURE CONCEPT -->
+<div class="q-card" data-q="q9" data-ans="b">
+  <div class="q-head"><span>Q9 • Purity</span><span>Concept</span></div>
+  <div class="q-text">A mixture has 80% milk. How much water is there in 25L?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q9" value="a"> 10L</label>
+    <label class="opt"><input type="radio" name="q9" value="b"> 5L</label>
+    <label class="opt"><input type="radio" name="q9" value="c"> 15L</label>
+    <label class="opt"><input type="radio" name="q9" value="d"> 20L</label>
+  </div>
+  <div class="explain">Water = 20% of 25 = 5L</div>
+</div>
+
+<!-- Q10 FRACTION -->
+<div class="q-card" data-q="q10" data-ans="a">
+  <div class="q-head"><span>Q10 • Fraction</span><span>Ratio</span></div>
+  <div class="q-text">If water is 3/8 of a mixture, milk fraction is?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q10" value="a"> 5/8</label>
+    <label class="opt"><input type="radio" name="q10" value="b"> 3/5</label>
+    <label class="opt"><input type="radio" name="q10" value="c"> 1/2</label>
+    <label class="opt"><input type="radio" name="q10" value="d"> 8/3</label>
+  </div>
+  <div class="explain">Milk = 1 − 3/8 = 5/8</div>
+</div>
+
+<!-- Q11 CONCEPTUAL -->
+<div class="q-card" data-q="q11" data-ans="d">
+  <div class="q-head"><span>Q11 • Concept</span><span>Mean</span></div>
+  <div class="q-text">Mean price of mixture will always lie?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q11" value="a"> Below cheaper</label>
+    <label class="opt"><input type="radio" name="q11" value="b"> Above dearer</label>
+    <label class="opt"><input type="radio" name="q11" value="c"> Equal to cheaper</label>
+    <label class="opt"><input type="radio" name="q11" value="d"> Between both</label>
+  </div>
+  <div class="explain">Mean always lies between two values</div>
+</div>
+
+<!-- Q12 TRICK -->
+<div class="q-card" data-q="q12" data-ans="c">
+  <div class="q-head"><span>Q12 • Trick</span><span>Alligation</span></div>
+  <div class="q-text">Mean closer to cheaper means quantity of cheaper is?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q12" value="a"> Less</label>
+    <label class="opt"><input type="radio" name="q12" value="b"> Equal</label>
+    <label class="opt"><input type="radio" name="q12" value="c"> More</label>
+    <label class="opt"><input type="radio" name="q12" value="d"> Zero</label>
+  </div>
+  <div class="explain">Closer value contributes more quantity</div>
+</div>
+
+<!-- Q13 ADVANCED -->
+<div class="q-card" data-q="q13" data-ans="a">
+  <div class="q-head"><span>Q13 • Advanced</span><span>Replacement</span></div>
+  <div class="q-text">After 3 replacements of 1/5 part, fraction of original left?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q13" value="a"> (4/5)³</label>
+    <label class="opt"><input type="radio" name="q13" value="b"> 3/5</label>
+    <label class="opt"><input type="radio" name="q13" value="c"> 1/5</label>
+    <label class="opt"><input type="radio" name="q13" value="d"> 2/5</label>
+  </div>
+  <div class="explain">(1−1/5)³ = (4/5)³</div>
+</div>
+
+<!-- Q14 RATIO RULE -->
+<div class="q-card" data-q="q14" data-ans="b">
+  <div class="q-head"><span>Q14 • Ratio Rule</span><span>Basics</span></div>
+  <div class="q-text">If a:b = 2:3, then a/(a+b) equals?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q14" value="a"> 3/5</label>
+    <label class="opt"><input type="radio" name="q14" value="b"> 2/5</label>
+    <label class="opt"><input type="radio" name="q14" value="c"> 1/3</label>
+    <label class="opt"><input type="radio" name="q14" value="d"> 5/2</label>
+  </div>
+  <div class="explain">a/(a+b) = 2/(2+3)=2/5</div>
+</div>
+
+<!-- Q15 EXAM GOLD -->
+<div class="q-card" data-q="q15" data-ans="d">
+  <div class="q-head"><span>Q15 • Exam Gold</span><span>Decision</span></div>
+  <div class="q-text">Mean not given, prices given, ratio asked. Best method?</div>
+  <div class="options">
+    <label class="opt"><input type="radio" name="q15" value="a"> Percentage</label>
+    <label class="opt"><input type="radio" name="q15" value="b"> Replacement</label>
+    <label class="opt"><input type="radio" name="q15" value="c"> Average</label>
+    <label class="opt"><input type="radio" name="q15" value="d"> Alligation</label>
+  </div>
+  <div class="explain">Use alligation alternate</div>
+</div>
+
+
+<div class="footer">
+<div>
+<button class="btn primary" id="check">Check Answers</button>
+<button class="btn secondary" id="reset">Reset</button>
+</div>
+<div class="score" id="score">Score: 0</div>
+</div>
+
+</div>
+
+<script>
+(function(){
+const cards=document.querySelectorAll(".q-card");
+const scoreEl=document.getElementById("score");
+
+document.getElementById("check").onclick=function(){
+let score=0;
+cards.forEach(c=>{
+const q=c.dataset.q;
+const ans=c.dataset.ans;
+const sel=document.querySelector(`input[name="${q}"]:checked`);
+c.classList.remove("correct","wrong");
+c.querySelector(".explain").classList.remove("show");
+if(!sel)return;
+if(sel.value===ans){score++;c.classList.add("correct");}
+else{c.classList.add("wrong");}
+c.querySelector(".explain").classList.add("show");
+});
+scoreEl.textContent=`Score: ${score} / ${cards.length}`;
+};
+
+document.getElementById("reset").onclick=function(){
+cards.forEach(c=>{
+const q=c.dataset.q;
+document.querySelectorAll(`input[name="${q}"]`).forEach(i=>i.checked=false);
+c.classList.remove("correct","wrong");
+c.querySelector(".explain").classList.remove("show");
+});
+scoreEl.textContent=`Score: 0 / ${cards.length}`;
+};
+})();
+</script>
+
+</body>
+</html>

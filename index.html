@@ -39,7 +39,50 @@
         header{text-align:center;font-size:2.5em;font-weight:700;color:#1e3a8a;margin-bottom:40px;letter-spacing:1px;z-index:10;}
         body.dark header{color:#93c5fd;}
         .section-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:25px;width:100%;max-width:900px;margin-bottom:40px;padding:0 10px;}
-        .btn{background:#ffffff;color:#1e3a8a;border:1px solid #d1d5db;padding:30px 20px;border-radius:12px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);z-index:10;}
+        /* .btn{background:#ffffff;color:#1e3a8a;border:1px solid #d1d5db;padding:30px 20px;border-radius:12px;font-size:1.1rem;font-weight:600;cursor:pointer;transition:all 0.3s ease;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,0.08);z-index:10;} */
+        .btn{
+    display:inline-block;
+    padding:28px 20px;
+    font-size:1.1rem;
+    font-weight:700;
+    cursor:pointer;
+    text-align:center;
+    color:#fff;
+    background:#04AA6D;
+    border:none;
+    border-radius:15px;
+    box-shadow:0 9px #000000;
+    transition:0.15s ease;
+}
+
+/* Hover */
+.btn:hover{
+    background:#059669;
+}
+
+/* Pressed effect */
+.btn:active{
+    box-shadow:0 5px #166534;
+    transform:translateY(4px);
+}
+
+/* Dark mode */
+body.dark .btn{
+    background:#22c55e;
+    color:#022c22;
+    box-shadow:0 9px #14532d;
+}
+
+body.dark .btn:hover{
+    background:#16a34a;
+}
+
+body.dark .btn:active{
+    box-shadow:0 5px #052e16;
+    transform:translateY(4px);
+}
+
+        
         .btn:hover{transform:translateY(-4px);background:#eff6ff;border-color:#3b82f6;box-shadow:0 8px 20px rgba(59,130,246,0.2);}
         body.dark .btn{background:#1f2937;color:#93c5fd;border-color:#374151;box-shadow:0 4px 12px rgba(0,0,0,0.4);}
         body.dark .btn:hover{background:#374151;border-color:#60a5fa;transform:translateY(-4px);box-shadow:0 8px 20px rgba(96,165,250,0.2);}
@@ -607,6 +650,7 @@ if (reportForm) {
     </script>
 </body>
 </html>
+
 
 
 

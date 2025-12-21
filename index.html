@@ -355,9 +355,14 @@ body.dark #reportSection input {
                 <div class="goal-link">
       🔗 Visit New Tab: <a href="https://sivasarans.github.io/maths/" target="_blank">https://sivasarans.github.io/maths/</a>
     </div>
-                <div class="goal-link">
-      🔗 Visit my goal tracker Full view: <a href="https://on.a2y.in" target="_blank">https://on.a2y.in</a>
-    </div>
+                <!-- <div class="goal-link">
+      🔗 Visit my goal tracker Full view: <a href="https://on.a2y.in" target="_blank">https://on.a*y.in</a>
+    </div> -->
+        <div class="goal-link">
+  🔐 Visit my goal tracker (Protected):
+  <a href="#" onclick="openProtectedLink()">https://on.a2y.in</a>
+</div>
+
 
         <!-- <div class="goal-link">
     🔗 Open local practice page (same folder):<br>
@@ -372,6 +377,19 @@ body.dark #reportSection input {
     </footer>
 
     <script>
+
+function openProtectedLink() {
+    const passcode = prompt("🔐 Enter passcode to continue:");
+
+    if (passcode === null) return; // cancel pressed
+
+    if (passcode === "7437") {
+        window.location.href = "https://on.a2y.in";
+    } else {
+        alert("❌ Incorrect passcode. Access denied.");
+    }
+}
+
         function toggleTheme(){
             document.body.classList.toggle("dark");
             document.querySelector(".toggle-theme").textContent = document.body.classList.contains("dark")?"☀️":"🌙";
@@ -589,6 +607,7 @@ if (reportForm) {
     </script>
 </body>
 </html>
+
 
 
 
